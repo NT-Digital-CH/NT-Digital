@@ -1227,7 +1227,7 @@ section.flush-top{ padding-top: 0; }
 @media (min-width: 768px) {
   .nav-cta   { display: flex; }
 
-  .contact-layout { grid-template-columns: 1fr 1.5fr; }
+  .contact-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); }
 
   .contact-next-head {
     grid-template-columns: minmax(240px, 0.7fr) 1fr;

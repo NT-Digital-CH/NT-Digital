@@ -27,7 +27,7 @@ export function Projects() {
             <p className="hero-eyebrow reveal">Portfolio</p>
             <ScrambleTitle
               prefix="Unsere"
-              words={['Projekte.', 'Arbeit.', 'Projekte.']}
+              words={['Projekte.', 'Leistung.', 'Resultate.', 'Arbeit.']}
               className="hero-title"
             />
             <p className="lead reveal reveal-delay-2">

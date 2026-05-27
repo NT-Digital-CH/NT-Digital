@@ -111,7 +111,7 @@ export function Contact() {
                 <p className="hero-eyebrow reveal">Kontakt</p>
                 <ScrambleTitle
                   prefix="Lass uns"
-                  words={['reden.', 'anfangen.', 'reden.']}
+                  words={['reden.', 'loslegen.', 'anfangen.', 'starten.']}
                   className="hero-title"
                 />
                 <p className="lead reveal reveal-delay-2">

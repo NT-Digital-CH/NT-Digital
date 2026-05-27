@@ -71,7 +71,7 @@ export function About() {
             <p className="hero-eyebrow reveal">Das Team</p>
             <ScrambleTitle
               prefix="Nikolic & Thala –"
-              words={['wir tippen. du wächst.', 'lernende. ambitioniert.', 'wir tippen. du wächst.']}
+              words={['wir tippen. du wächst.', 'zwei. ein ziel.', 'lernende. hungrig.', 'handwerk. ehrlich.']}
               className="hero-title"
               delay={0.4}
             />
