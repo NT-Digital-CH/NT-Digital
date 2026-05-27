@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Button } from '../components/Button';
@@ -8,6 +8,26 @@ gsap.registerPlugin(ScrollTrigger);
 
 const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY as string | undefined;
 const endpoint = ['https://api.web3forms.com', 'submit'].join('/');
+
+const priceProjectLabels: Record<string, string> = {
+  onepager: 'Onepager',
+  landingpage: 'Landingpage',
+  mehrseitig: 'Mehrseitige Website',
+  website: 'Mehrseitige Website',
+  individuell: 'Individuell',
+};
+
+const priceAddOnLabels: Record<string, string> = {
+  kontaktformular: 'Kontaktformular',
+  maps: 'Google Maps Einbindung',
+  seo: 'SEO-Basis',
+  texte: 'Texte optimieren',
+  bilder: 'Bilder optimieren',
+  mehrsprachigkeit: 'Mehrsprachigkeit DE/EN',
+  rechtliches: 'Rechtliche Seiten vorbereiten',
+};
+
+const formatPrice = (price: number) => `CHF ${price.toLocaleString('de-CH')}`;
 
 const contactRows = [
   { label: 'E-Mail', value: <a href="mailto:nt-digital@mail.ch">nt-digital@mail.ch</a> },
@@ -74,6 +94,34 @@ export function Contact() {
   const contactFormRef = useRef<HTMLDivElement>(null);
   const nextStepsRef = useRef<HTMLDivElement>(null);
   const nextStepsTrackRef = useRef<HTMLDivElement>(null);
+
+  const priceRequest = useMemo(() => {
+    const params = new URLSearchParams(window.location.search);
+    const typeParam = params.get('typ');
+
+    if (!typeParam) return null;
+
+    const projectType = priceProjectLabels[typeParam] ?? typeParam;
+    const addOnParams = params.get('addons')?.split(',').filter(Boolean) ?? [];
+    const addOns = addOnParams.map((addOn) => priceAddOnLabels[addOn] ?? addOn);
+    const priceParam = params.get('preis');
+    const parsedPrice = priceParam ? Number(priceParam) : null;
+    const priceLabel =
+      parsedPrice !== null && Number.isFinite(parsedPrice) ? `ab ${formatPrice(parsedPrice)}` : 'Preis nach Aufwand';
+    const addOnsLabel = addOns.length ? addOns.join(', ') : 'Keine Zusatz-Bausteine ausgewählt';
+
+    return {
+      projectType,
+      addOns,
+      addOnsLabel,
+      priceLabel,
+      hiddenValue: [
+        `Projekt-Typ: ${projectType}`,
+        `Bausteine: ${addOnsLabel}`,
+        `Geschätzter Preis: ${priceLabel}`,
+      ].join('\n'),
+    };
+  }, []);
 
   useEffect(() => {
     const section = nextStepsRef.current;
@@ -263,6 +311,46 @@ export function Contact() {
               <h3>Nachricht schreiben</h3>
 
               <form onSubmit={handleSubmit} noValidate>
+                {priceRequest ? (
+                  <div className="price-request-summary">
+                    <div className="price-request-head">
+                      <div>
+                        <p className="section-eyebrow">Deine Auswahl</p>
+                        <p>Diese Angaben übernehmen wir direkt in deine Anfrage.</p>
+                      </div>
+                    </div>
+
+                    <div className="price-request-project">
+                      <span>Projekt</span>
+                      <strong>{priceRequest.projectType}</strong>
+                    </div>
+
+                    <div className="price-request-addons">
+                      <span>Bausteine</span>
+                      <div>
+                        {priceRequest.addOns.length ? (
+                          priceRequest.addOns.map((addOn) => (
+                            <span className="price-request-pill" key={addOn}>
+                              {addOn}
+                            </span>
+                          ))
+                        ) : (
+                          <span className="price-request-pill muted">Keine Zusatz-Bausteine ausgewählt</span>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="price-request-price">
+                      <span>Geschätzter Richtpreis</span>
+                      <strong>{priceRequest.priceLabel}</strong>
+                    </div>
+
+                    <p className="price-request-note">Der finale Preis hängt vom genauen Umfang ab.</p>
+                  </div>
+                ) : null}
+
+                {priceRequest ? <input type="hidden" name="preisanfrage" value={priceRequest.hiddenValue} /> : null}
+
                 <div className="form-field">
                   <label htmlFor="name">
                     Name <span className="required-mark">*</span>
