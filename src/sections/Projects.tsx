@@ -1,3 +1,5 @@
+import { ScrambleTitle } from '../components/ScrambleTitle';
+
 const processItems = [
   {
     num: '01',
@@ -23,11 +25,11 @@ export function Projects() {
         <div className="container">
           <div className="hero-body">
             <p className="hero-eyebrow reveal">Portfolio</p>
-            <h1 className="hero-title reveal reveal-delay-1">
-              Unsere
-              <br />
-              <em>Projekte.</em>
-            </h1>
+            <ScrambleTitle
+              prefix="Unsere"
+              words={['Projekte.', 'Arbeit.', 'Projekte.']}
+              className="hero-title"
+            />
             <p className="lead reveal reveal-delay-2">
               Jede Website ist ein Handwerk.
               <br />

@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \"const html = require\\('fs'\\).readFileSync\\('skills.html','utf8'\\); const m = html.match\\(/class=\\\\\"demo-card[^\\\\\"]*\\\\\"/g\\); console.log\\(m\\);\")"
+    ]
+  }
+}
