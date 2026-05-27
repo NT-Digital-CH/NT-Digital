@@ -3,6 +3,7 @@ import { Button } from './Button';
 import { Logo } from './Logo';
 
 const links = [
+  { href: '/', label: 'Home', page: 'home' },
   { href: '/about', label: 'Über uns', page: 'about' },
   { href: '/skills', label: 'Was wir können', page: 'skills' },
   { href: '/projekte', label: 'Projekte', page: 'projekte' },
