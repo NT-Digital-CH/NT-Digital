@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Button } from '../components/Button';
 import { ScrambleTitle } from '../components/ScrambleTitle';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -42,17 +43,27 @@ const nextSteps = [
   {
     num: '01',
     title: 'Nachricht',
-    text: 'Du erzählst uns kurz von deiner Idee oder Frage.',
+    text: 'Du erzählst uns kurz von deiner Idee, deinem Problem oder deiner Frage.',
   },
   {
     num: '02',
     title: 'Rückmeldung',
-    text: 'Wir melden uns persönlich, meistens innerhalb von 24 Stunden.',
+    text: 'Wir schauen uns deine Anfrage an und melden uns persönlich, meistens innerhalb von 24 Stunden.',
   },
   {
     num: '03',
-    title: 'Nächster Schritt',
-    text: 'Wenn es passt, besprechen wir Umfang, Zeitplan und einen fairen Preis.',
+    title: 'Kurzes Gespräch',
+    text: 'Wir klären gemeinsam, was du brauchst, was Sinn macht und welche Lösung zu deinem Budget passt.',
+  },
+  {
+    num: '04',
+    title: 'Angebot',
+    text: 'Du bekommst einen einfachen Vorschlag mit Umfang, Zeitplan und fairem Preis.',
+  },
+  {
+    num: '05',
+    title: 'Start',
+    text: 'Wenn alles passt, starten wir mit der Umsetzung und halten dich transparent auf dem Laufenden.',
   },
 ];
 
@@ -60,6 +71,7 @@ export function Contact() {
   const [isSending, setIsSending] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const contactFormRef = useRef<HTMLDivElement>(null);
   const nextStepsRef = useRef<HTMLDivElement>(null);
   const nextStepsTrackRef = useRef<HTMLDivElement>(null);
 
@@ -77,63 +89,100 @@ export function Contact() {
       if (!sticky || !viewport) return undefined;
 
       const getScrollDistance = () => Math.max(0, track.scrollWidth - viewport.clientWidth);
+      const getScrollLength = () => Math.max(1, getScrollDistance() + Math.min(220, viewport.clientWidth * 0.16));
+      const updateMetrics = () => {
+        section.style.setProperty('--next-scroll-length', `${getScrollLength()}px`);
+        section.style.setProperty('--next-sticky-height', `${sticky.offsetHeight}px`);
+      };
 
-      const tween = gsap.to(track, {
-        x: () => -getScrollDistance(),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 18%',
-          end: () => `+=${Math.max(52, getScrollDistance() * 0.5)}`,
-          scrub: 0.7,
-          pin: sticky,
-          pinSpacing: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          onUpdate: (self) => {
-            section.style.setProperty('--timeline-progress', self.progress.toString());
+      updateMetrics();
+
+      const context = gsap.context(() => {
+        gsap.to(track, {
+          x: () => -getScrollDistance(),
+          ease: 'none',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 96px',
+            end: () => {
+              updateMetrics();
+              return `+=${getScrollLength()}`;
+            },
+            scrub: 0.9,
+            invalidateOnRefresh: true,
+            fastScrollEnd: true,
+            onUpdate: (self) => {
+              section.style.setProperty('--timeline-progress', self.progress.toString());
+            },
+            onRefresh: (self) => {
+              updateMetrics();
+              section.style.setProperty('--timeline-progress', self.progress.toString());
+            },
           },
-          onRefresh: (self) => {
-            section.style.setProperty('--timeline-progress', self.progress.toString());
+        });
+
+        gsap.from(section.querySelectorAll('.contact-next-head > *'), {
+          opacity: 0,
+          y: 20,
+          duration: 0.55,
+          stagger: 0.08,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 74%',
+            once: true,
           },
-        },
-      });
+        });
 
-      gsap.from(section.querySelectorAll('.contact-next-head > *'), {
-        opacity: 0,
-        y: 20,
-        duration: 0.55,
-        stagger: 0.08,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 74%',
-          once: true,
-        },
-      });
+        gsap.from(section.querySelectorAll('.contact-next-row'), {
+          opacity: 0,
+          y: 24,
+          scale: 0.99,
+          duration: 0.55,
+          stagger: 0.08,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 62%',
+            once: true,
+          },
+        });
 
-      gsap.from(section.querySelectorAll('.contact-next-row'), {
-        opacity: 0,
-        y: 28,
-        scale: 0.985,
-        duration: 0.55,
-        stagger: 0.1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 62%',
-          once: true,
-        },
-      });
+      }, section);
+
+      let refreshId = 0;
+      const scheduleRefresh = () => {
+        window.cancelAnimationFrame(refreshId);
+        refreshId = window.requestAnimationFrame(() => {
+          updateMetrics();
+          ScrollTrigger.refresh();
+        });
+      };
+
+      const resizeObserver = new ResizeObserver(scheduleRefresh);
+      resizeObserver.observe(sticky);
+      resizeObserver.observe(viewport);
+      resizeObserver.observe(track);
+
+      scheduleRefresh();
 
       return () => {
-        tween.scrollTrigger?.kill();
-        tween.kill();
+        window.cancelAnimationFrame(refreshId);
+        resizeObserver.disconnect();
+        context.revert();
+        section.style.removeProperty('--next-scroll-length');
+        section.style.removeProperty('--next-sticky-height');
+        section.style.removeProperty('--timeline-progress');
       };
     });
 
     return () => media.revert();
   }, []);
+
+  function scrollToForm(event: React.MouseEvent<HTMLAnchorElement>) {
+    event.preventDefault();
+    document.getElementById('kontaktformular')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -210,7 +259,7 @@ export function Contact() {
 
             </div>
 
-            <div className="contact-form-block reveal reveal-delay-1">
+            <div className="contact-form-block reveal reveal-delay-1" id="kontaktformular" ref={contactFormRef}>
               <h3>Nachricht schreiben</h3>
 
               <form onSubmit={handleSubmit} noValidate>
@@ -289,13 +338,13 @@ export function Contact() {
           <div className="contact-next-steps" ref={nextStepsRef}>
             <div className="contact-next-sticky">
               <div className="contact-next-head">
-              <p className="section-eyebrow">Ablauf</p>
-              <h2>Was passiert danach?</h2>
-              <p>
-                Du bekommst keinen automatischen Standard-Funnel. Wir prüfen deine Anfrage kurz, melden uns persönlich
-                und klären gemeinsam, was wirklich Sinn macht.
-              </p>
-            </div>
+                <p className="section-eyebrow">Ablauf</p>
+                <h2>Was passiert danach?</h2>
+                <p>
+                  Du bekommst keinen automatischen Standard-Funnel. Wir prüfen deine Anfrage kurz, melden uns persönlich
+                  und klären gemeinsam, was wirklich Sinn macht.
+                </p>
+              </div>
 
               <div className="contact-next-viewport">
                 <div className="contact-next-rail" aria-hidden="true">
@@ -303,19 +352,32 @@ export function Contact() {
                 </div>
 
                 <div className="contact-next-list" ref={nextStepsTrackRef}>
-              {nextSteps.map((step) => (
-                <div className="contact-next-row" key={step.num}>
-                  <span className="contact-next-dot" aria-hidden="true" />
-                  <span className="contact-next-num">{step.num}</span>
-                  <div>
-                    <p className="contact-next-name">{step.title}</p>
-                    <p className="contact-next-text">{step.text}</p>
-                  </div>
-                </div>
-              ))}
+                  {nextSteps.map((step) => (
+                    <div className="contact-next-row" key={step.num}>
+                      <span className="contact-next-dot" aria-hidden="true" />
+                      <span className="contact-next-num">{step.num}</span>
+                      <div>
+                        <p className="contact-next-name">{step.title}</p>
+                        <p className="contact-next-text">{step.text}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
+          </div>
+
+          <div className="contact-next-cta reveal">
+            <div>
+              <h3>Noch keine fertige Idee?</h3>
+              <p>
+                Kein Problem. Erzähl uns einfach kurz, was du brauchst oder was dich aktuell stört. Wir schauen es uns
+                an und melden uns ehrlich mit dem nächsten sinnvollen Schritt.
+              </p>
+            </div>
+            <Button className="contact-next-cta-button" role="button" tabIndex={0} onClick={scrollToForm}>
+              Unverbindlich anfragen
+            </Button>
           </div>
         </div>
       </section>
