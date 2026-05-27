@@ -3,3 +3,7 @@ dist/
 .vite/
 *.tsbuildinfo
 vite-dev*.log
+.env
+.env.local
+.env.*.local
+!.env.example
