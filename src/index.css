@@ -958,7 +958,7 @@ section.flush-top{ padding-top: 0; }
 .contact-hero-section {
   min-height: calc(100svh - var(--nav-h));
   padding-top: calc(var(--nav-h) + var(--sp-16));
-  padding-bottom: var(--sp-20);
+  padding-bottom: var(--sp-12);
 }
 
 .contact-layout {
@@ -1016,9 +1016,14 @@ section.flush-top{ padding-top: 0; }
 .contact-value a:hover { color: var(--fg); }
 
 .contact-next-steps {
+  --timeline-progress: 0;
   border-top: 1px solid var(--border);
-  margin-top: var(--sp-20);
+  margin-top: var(--sp-16);
   padding-top: var(--sp-12);
+}
+
+.contact-next-sticky {
+  overflow: visible;
 }
 
 .contact-next-head {
@@ -1037,23 +1042,74 @@ section.flush-top{ padding-top: 0; }
   line-height: 1.75;
 }
 
+.contact-next-viewport {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: visible;
+  padding: var(--sp-8) 0 var(--sp-4);
+  overscroll-behavior-x: contain;
+}
+
+.contact-next-rail {
+  position: absolute;
+  top: 18px;
+  left: var(--sp-8);
+  right: var(--sp-8);
+  height: 1px;
+  background: var(--border-2);
+  transform: translateY(-50%);
+}
+
+.contact-next-rail-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(var(--timeline-progress));
+  transform-origin: left center;
+}
+
 .contact-next-list {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  overflow: hidden;
+  display: flex;
+  gap: var(--sp-6);
+  width: max-content;
+  will-change: transform;
 }
 
 .contact-next-row {
+  position: relative;
+  flex: 0 0 min(78vw, 520px);
   display: flex;
   flex-direction: column;
   gap: var(--sp-8);
-  min-height: 220px;
-  padding: var(--sp-8);
+  min-height: 260px;
+  padding: var(--sp-10);
   background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  backface-visibility: hidden;
+  transition:
+    background var(--t-base),
+    border-color var(--t-base),
+    transform var(--t-base);
+}
+
+.contact-next-row:hover {
+  background: var(--surface-2);
+  border-color: var(--border-2);
+  transform: translateY(-4px);
+}
+
+.contact-next-dot {
+  position: absolute;
+  top: -28px;
+  left: var(--sp-10);
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  background: var(--bg);
+  border: 1px solid var(--accent);
+  box-shadow: 0 0 0 8px var(--bg);
 }
 
 .contact-next-num {
@@ -1078,6 +1134,38 @@ section.flush-top{ padding-top: 0; }
   color: var(--fg-muted);
   line-height: 1.72;
   max-width: 34ch;
+}
+
+@media (max-width: 767px) {
+  .contact-next-viewport {
+    overflow: visible;
+    padding: 0;
+  }
+
+  .contact-next-rail {
+    display: none;
+  }
+
+  .contact-next-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sp-6);
+    width: auto;
+  }
+
+  .contact-next-row {
+    flex-basis: auto;
+    min-height: 220px;
+    padding: var(--sp-8);
+  }
+
+  .contact-next-dot {
+    display: none;
+  }
+}
+
+body[data-page='kontakt'] .footer {
+  margin-top: var(--sp-12);
 }
 
 /* Form */
@@ -1229,6 +1317,10 @@ section.flush-top{ padding-top: 0; }
 
   .contact-layout { grid-template-columns: 1fr 1.5fr; }
 
+  .contact-next-steps {
+    min-height: 128svh;
+  }
+
   .contact-next-head {
     grid-template-columns: minmax(240px, 0.7fr) 1fr;
     align-items: end;
@@ -1241,10 +1333,6 @@ section.flush-top{ padding-top: 0; }
 
   .contact-next-head p:not(.section-eyebrow) {
     justify-self: end;
-  }
-
-  .contact-next-list {
-    grid-template-columns: repeat(3, 1fr);
   }
 
   .project-item {

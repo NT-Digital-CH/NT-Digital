@@ -1,5 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrambleTitle } from '../components/ScrambleTitle';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY as string | undefined;
 const endpoint = ['https://api.web3forms.com', 'submit'].join('/');
@@ -56,6 +60,80 @@ export function Contact() {
   const [isSending, setIsSending] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const nextStepsRef = useRef<HTMLDivElement>(null);
+  const nextStepsTrackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = nextStepsRef.current;
+    const track = nextStepsTrackRef.current;
+
+    if (!section || !track || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const media = gsap.matchMedia();
+
+    media.add('(min-width: 768px)', () => {
+      const sticky = section.querySelector<HTMLElement>('.contact-next-sticky');
+      const viewport = section.querySelector<HTMLElement>('.contact-next-viewport');
+      if (!sticky || !viewport) return undefined;
+
+      const getScrollDistance = () => Math.max(0, track.scrollWidth - viewport.clientWidth);
+
+      const tween = gsap.to(track, {
+        x: () => -getScrollDistance(),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top+=92',
+          end: () => `+=${getScrollDistance()}`,
+          scrub: 0.7,
+          pin: sticky,
+          pinSpacing: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            section.style.setProperty('--timeline-progress', self.progress.toString());
+          },
+          onRefresh: (self) => {
+            section.style.setProperty('--timeline-progress', self.progress.toString());
+          },
+        },
+      });
+
+      gsap.from(section.querySelectorAll('.contact-next-head > *'), {
+        opacity: 0,
+        y: 20,
+        duration: 0.55,
+        stagger: 0.08,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 74%',
+          once: true,
+        },
+      });
+
+      gsap.from(section.querySelectorAll('.contact-next-row'), {
+        opacity: 0,
+        y: 28,
+        scale: 0.985,
+        duration: 0.55,
+        stagger: 0.1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 62%',
+          once: true,
+        },
+      });
+
+      return () => {
+        tween.scrollTrigger?.kill();
+        tween.kill();
+      };
+    });
+
+    return () => media.revert();
+  }, []);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -208,8 +286,9 @@ export function Contact() {
             </div>
           </div>
 
-          <div className="contact-next-steps reveal reveal-delay-2">
-            <div className="contact-next-head">
+          <div className="contact-next-steps" ref={nextStepsRef}>
+            <div className="contact-next-sticky">
+              <div className="contact-next-head">
               <p className="section-eyebrow">Ablauf</p>
               <h2>Was passiert danach?</h2>
               <p>
@@ -218,9 +297,15 @@ export function Contact() {
               </p>
             </div>
 
-            <div className="contact-next-list">
+              <div className="contact-next-viewport">
+                <div className="contact-next-rail" aria-hidden="true">
+                  <span className="contact-next-rail-fill" />
+                </div>
+
+                <div className="contact-next-list" ref={nextStepsTrackRef}>
               {nextSteps.map((step) => (
                 <div className="contact-next-row" key={step.num}>
+                  <span className="contact-next-dot" aria-hidden="true" />
                   <span className="contact-next-num">{step.num}</span>
                   <div>
                     <p className="contact-next-name">{step.title}</p>
@@ -228,6 +313,8 @@ export function Contact() {
                   </div>
                 </div>
               ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
