@@ -83,8 +83,8 @@ export function Contact() {
         ease: 'none',
         scrollTrigger: {
           trigger: section,
-          start: 'top top+=92',
-          end: () => `+=${getScrollDistance()}`,
+          start: 'top 18%',
+          end: () => `+=${Math.max(52, getScrollDistance() * 0.5)}`,
           scrub: 0.7,
           pin: sticky,
           pinSpacing: true,
