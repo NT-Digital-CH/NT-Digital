@@ -7,10 +7,11 @@ import { Contact } from './sections/Contact';
 import { Datenschutz } from './sections/Datenschutz';
 import { Home } from './sections/Home';
 import { Impressum } from './sections/Impressum';
+import { Prices } from './sections/Prices';
 import { Projects } from './sections/Projects';
 import { Skills } from './sections/Skills';
 
-type PageKey = 'home' | 'about' | 'skills' | 'projekte' | 'kontakt' | 'impressum' | 'datenschutz';
+type PageKey = 'home' | 'about' | 'skills' | 'projekte' | 'preise' | 'kontakt' | 'impressum' | 'datenschutz';
 
 const pageMeta: Record<PageKey, { title: string; description: string }> = {
   home: {
@@ -33,6 +34,10 @@ const pageMeta: Record<PageKey, { title: string; description: string }> = {
     description:
       'NT Digital Projekte - MMAC Center Kampfschule Bachenbülach und weitere Webprojekte von Jones Thala & Nikolic.',
   },
+  preise: {
+    title: 'Preise - NT Digital',
+    description: 'NT Digital Preise - Grobe Projektpreise für kleine Websites mit interaktivem Preis-Konfigurator.',
+  },
   kontakt: {
     title: 'Kontakt - NT Digital',
     description: 'NT Digital - Kontakt. Schreib uns direkt, wir melden uns schnell.',
@@ -54,6 +59,7 @@ function pageFromPath(pathname: string): PageKey {
   if (normalized === '/about' || normalized === '/about.html') return 'about';
   if (normalized === '/skills' || normalized === '/skills.html') return 'skills';
   if (normalized === '/projekte' || normalized === '/projekte.html') return 'projekte';
+  if (normalized === '/preise' || normalized === '/preise.html') return 'preise';
   if (normalized === '/kontakt' || normalized === '/kontakt.html') return 'kontakt';
   if (normalized === '/impressum' || normalized === '/impressum.html') return 'impressum';
   if (normalized === '/datenschutz' || normalized === '/datenschutz.html') return 'datenschutz';
@@ -87,7 +93,7 @@ function useRoute() {
       const nextUrl = new URL(href, window.location.origin);
       const nextPage = pageFromPath(nextUrl.pathname);
       event.preventDefault();
-      window.history.pushState({}, '', pathForPage(nextPage));
+      window.history.pushState({}, '', `${pathForPage(nextPage)}${nextUrl.search}${nextUrl.hash}`);
       setPage(nextPage);
       window.scrollTo({ top: 0, behavior: 'instant' });
     };
@@ -223,6 +229,8 @@ export function App() {
         return Skills;
       case 'projekte':
         return Projects;
+      case 'preise':
+        return Prices;
       case 'kontakt':
         return Contact;
       case 'impressum':
