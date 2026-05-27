@@ -958,7 +958,7 @@ section.flush-top{ padding-top: 0; }
 .contact-hero-section {
   min-height: calc(100svh - var(--nav-h));
   padding-top: calc(var(--nav-h) + var(--sp-16));
-  padding-bottom: var(--sp-12);
+  padding-bottom: var(--sp-8);
 }
 
 .contact-layout {
@@ -1018,8 +1018,8 @@ section.flush-top{ padding-top: 0; }
 .contact-next-steps {
   --timeline-progress: 0;
   border-top: 1px solid var(--border);
-  margin-top: var(--sp-16);
-  padding-top: var(--sp-12);
+  margin-top: var(--sp-12);
+  padding-top: var(--sp-10);
 }
 
 .contact-next-sticky {
@@ -1044,10 +1044,9 @@ section.flush-top{ padding-top: 0; }
 
 .contact-next-viewport {
   position: relative;
-  overflow-x: hidden;
-  overflow-y: visible;
+  overflow: clip;
   padding: var(--sp-8) 0 var(--sp-4);
-  overscroll-behavior-x: contain;
+  touch-action: pan-y;
 }
 
 .contact-next-rail {
@@ -1078,7 +1077,7 @@ section.flush-top{ padding-top: 0; }
 
 .contact-next-row {
   position: relative;
-  flex: 0 0 min(78vw, 520px);
+  flex: 0 0 min(68vw, 430px);
   display: flex;
   flex-direction: column;
   gap: var(--sp-8);
@@ -1165,7 +1164,7 @@ section.flush-top{ padding-top: 0; }
 }
 
 body[data-page='kontakt'] .footer {
-  margin-top: var(--sp-12);
+  margin-top: var(--sp-8);
 }
 
 /* Form */
@@ -1318,7 +1317,7 @@ body[data-page='kontakt'] .footer {
   .contact-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); }
 
   .contact-next-steps {
-    min-height: 128svh;
+    padding-bottom: var(--sp-20);
   }
 
   .contact-next-head {
