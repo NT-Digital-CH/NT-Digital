@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NT Digital – Was wir können. Frontend-Handwerk live demonstriert: CSS Animationen, Micro-Interactions, Glassmorphism, Responsive Design, Scroll-Animationen und Typografie." />
+  <title>Was wir können – NT Digital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Skills page – scoped styles ─────────────────────────── */
+
+    /* Grid background lines */
+    .skills-hero-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .skills-hero-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(oklch(95% 0.008 268 / 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, oklch(95% 0.008 268 / 0.04) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 100%);
+      animation: grid-drift 20s linear infinite;
+    }
+    @keyframes grid-drift {
+      0%   { background-position: 0 0; }
+      100% { background-position: 64px 64px; }
+    }
+
+    /* Hero badge */
+    .expertise-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.68rem;
+      font-weight: 640;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-dim);
+      border: 1px solid oklch(55% 0.27 268 / 0.28);
+      background: oklch(55% 0.27 268 / 0.07);
+      padding: 5px 12px;
+      border-radius: 2px;
+      margin-bottom: var(--sp-8);
+    }
+    .expertise-badge::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse-dot 2.4s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.6); }
+    }
+
+    .hero-subtitle {
+      font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+      color: var(--fg-muted);
+      max-width: 52ch;
+      line-height: 1.72;
+      font-weight: 380;
+    }
+    .hero-subtitle strong {
+      color: var(--fg);
+      font-weight: 560;
+    }
+
+    /* ── Demo Cards Grid ──────────────────────────────────────── */
+    .demo-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    @media (min-width: 640px) {
+      .demo-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .demo-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .demo-card {
+      background: var(--surface);
+      padding: var(--sp-8);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-6);
+      transition: background var(--t-base);
+      position: relative;
+      overflow: hidden;
+    }
+    .demo-card:hover {
+      background: var(--surface-2);
+    }
+
+    .demo-stage {
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .demo-meta {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-3);
+    }
+
+    .demo-label {
+      font-size: 0.92rem;
+      font-weight: 640;
+      color: var(--fg);
+      letter-spacing: -0.02em;
+    }
+
+    .demo-tags {
+      font-size: 0.68rem;
+      font-weight: 520;
+      color: var(--accent-dim);
+      letter-spacing: 0.04em;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+
+    .demo-desc {
+      font-size: 0.82rem;
+      color: var(--fg-muted);
+      line-height: 1.65;
+    }
+
+    /* ── CARD 1: CSS Animations ──────────────────────────────── */
+    .anim-rhombus {
+      width: 48px;
+      height: 48px;
+      background: var(--accent);
+      transform: rotate(45deg);
+      animation: rhombus-spin 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      position: relative;
+    }
+    .anim-rhombus::before,
+    .anim-rhombus::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border: 1px solid oklch(55% 0.27 268 / 0.3);
+      animation: rhombus-pulse 3s ease-in-out infinite;
+    }
+    .anim-rhombus::after {
+      inset: -16px;
+      animation-delay: 0.4s;
+    }
+    @keyframes rhombus-spin {
+      0%   { transform: rotate(45deg) scale(1); }
+      25%  { transform: rotate(135deg) scale(1.15); }
+      50%  { transform: rotate(225deg) scale(1); }
+      75%  { transform: rotate(315deg) scale(1.15); }
+      100% { transform: rotate(405deg) scale(1); }
+    }
+    @keyframes rhombus-pulse {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50%       { opacity: 0.15; transform: scale(1.1); }
+    }
+
+    /* ── CARD 2: Micro-Interactions ──────────────────────────── */
+    .micro-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: oklch(55% 0.27 268 / 0.12);
+      border: 1px solid oklch(55% 0.27 268 / 0.35);
+      border-radius: var(--radius);
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 580;
+      color: var(--accent-dim);
+      cursor: pointer;
+      min-height: 44px;
+      transition: all 280ms cubic-bezier(0.34, 1.56, 0.64, 1);
+      overflow: hidden;
+      letter-spacing: -0.01em;
+      user-select: none;
+    }
+    .micro-btn:hover {
+      background: oklch(55% 0.27 268 / 0.18);
+      border-color: oklch(55% 0.27 268 / 0.55);
+      color: var(--fg);
+      transform: scale(1.06);
+      box-shadow: 0 4px 24px oklch(55% 0.27 268 / 0.2);
+    }
+    .micro-btn:active {
+      transform: scale(0.97);
+      box-shadow: none;
+      transition-duration: 100ms;
+    }
+    .ripple-ring {
+      position: absolute;
+      border-radius: 50%;
+      background: oklch(55% 0.27 268 / 0.25);
+      pointer-events: none;
+      transform: scale(0);
+      animation: ripple-out 600ms ease-out forwards;
+    }
+    @keyframes ripple-out {
+      to { transform: scale(4); opacity: 0; }
+    }
+
+    /* ── CARD 3: Glassmorphism ───────────────────────────────── */
+    .glass-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 25% 35%, oklch(55% 0.27 268 / 0.55) 0%, transparent 55%),
+        radial-gradient(circle at 75% 65%, oklch(72% 0.18 320 / 0.35) 0%, transparent 55%);
+      filter: blur(1px);
+    }
+    .glass-card {
+      position: relative;
+      z-index: 1;
+      padding: 14px 20px;
+      background: oklch(95% 0.008 268 / 0.06);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      border: 1px solid oklch(95% 0.008 268 / 0.14);
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 160px;
+    }
+    .glass-card-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: oklch(95% 0.008 268 / 0.9);
+      letter-spacing: -0.01em;
+    }
+    .glass-card-sub {
+      font-size: 0.68rem;
+      color: oklch(95% 0.008 268 / 0.5);
+    }
+    .glass-card-bar {
+      height: 2px;
+      margin-top: 6px;
+      background: oklch(95% 0.008 268 / 0.12);
+      border-radius: 1px;
+      overflow: hidden;
+    }
+    .glass-card-bar-fill {
+      height: 100%;
+      width: 72%;
+      background: var(--accent);
+      border-radius: 1px;
+      animation: bar-shimmer 2.4s ease-in-out infinite alternate;
+    }
+    @keyframes bar-shimmer {
+      from { width: 40%; }
+      to   { width: 85%; }
+    }
+
+    /* ── CARD 4: Responsive Layout ───────────────────────────── */
+    .resp-toggle {
+      display: inline-flex;
+      gap: var(--sp-2);
+      margin-bottom: var(--sp-3);
+    }
+    .resp-btn {
+      padding: 5px 10px;
+      font-family: inherit;
+      font-size: 0.68rem;
+      font-weight: 560;
+      border: 1px solid var(--border-2);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--fg-muted);
+      cursor: pointer;
+      transition: all var(--t-fast);
+      min-height: 30px;
+    }
+    .resp-btn.active,
+    .resp-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent-dim);
+      background: oklch(55% 0.27 268 / 0.08);
+    }
+    .resp-mini-grid {
+      display: grid;
+      gap: 4px;
+      transition: grid-template-columns 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .resp-mini-grid[data-cols="1"] { grid-template-columns: 1fr; }
+    .resp-mini-grid[data-cols="2"] { grid-template-columns: repeat(2, 1fr); }
+    .resp-mini-grid[data-cols="3"] { grid-template-columns: repeat(3, 1fr); }
+    .resp-mini-cell {
+      height: 28px;
+      border-radius: 2px;
+      background: oklch(55% 0.27 268 / 0.12);
+      border: 1px solid oklch(55% 0.27 268 / 0.2);
+    }
+
+    /* ── CARD 5: Scroll Animations ───────────────────────────── */
+    .scroll-bars-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+      max-width: 200px;
+    }
+    .scroll-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .scroll-bar-label {
+      font-size: 0.6rem;
+      color: var(--fg-subtle);
+      width: 28px;
+      flex-shrink: 0;
+      letter-spacing: 0.04em;
+    }
+    .scroll-bar-track {
+      flex: 1;
+      height: 3px;
+      background: oklch(95% 0.008 268 / 0.07);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .scroll-bar-fill {
+      height: 100%;
+      border-radius: 2px;
+      background: var(--accent);
+      transform: translateX(-100%);
+      transition: transform 600ms var(--ease-expo);
+    }
+    .demo-card.visible .scroll-bar-fill { transform: translateX(0); }
+    .demo-card.visible .scroll-bar-row:nth-child(1) .scroll-bar-fill { transition-delay: 0ms; }
+    .demo-card.visible .scroll-bar-row:nth-child(2) .scroll-bar-fill { transition-delay: 90ms; }
+    .demo-card.visible .scroll-bar-row:nth-child(3) .scroll-bar-fill { transition-delay: 180ms; }
+    .demo-card.visible .scroll-bar-row:nth-child(4) .scroll-bar-fill { transition-delay: 270ms; }
+
+    /* ── CARD 6: Typography ──────────────────────────────────── */
+    .typo-counter {
+      font-size: clamp(2.8rem, 6vw, 3.6rem);
+      font-weight: 780;
+      letter-spacing: -0.04em;
+      color: var(--fg);
+      line-height: 1;
+      tabular-nums: normal;
+      font-variant-numeric: tabular-nums;
+    }
+    .typo-counter-sub {
+      font-size: 0.72rem;
+      color: var(--fg-subtle);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+    .typo-split-word {
+      display: flex;
+      gap: 0;
+      cursor: default;
+    }
+    .typo-split-word span {
+      display: inline-block;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 720;
+      letter-spacing: -0.03em;
+      color: var(--fg);
+      transition: transform 280ms cubic-bezier(0.34, 1.56, 0.64, 1), color 200ms ease;
+    }
+    .typo-split-word:hover span { color: var(--accent-dim); }
+    .typo-split-word:hover span:nth-child(odd)  { transform: translateY(-4px); }
+    .typo-split-word:hover span:nth-child(even) { transform: translateY(4px); }
+
+    /* ── Skill Tags Cloud ─────────────────────────────────────── */
+    .tag-cloud-section { }
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--sp-2);
+      margin-bottom: var(--sp-4);
+    }
+    .tag-row:last-child { margin-bottom: 0; }
+
+    .skill-tag {
+      font-size: 0.78rem;
+      font-weight: 460;
+      color: var(--fg-muted);
+      border: 1px solid var(--border);
+      padding: 5px 11px;
+      border-radius: 3px;
+      cursor: default;
+      opacity: 0;
+      transform: translateY(10px);
+      transition:
+        opacity  400ms var(--ease-expo),
+        transform 400ms var(--ease-expo),
+        color var(--t-fast),
+        border-color var(--t-fast),
+        background var(--t-fast);
+    }
+    .skill-tag.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .skill-tag:hover {
+      color: var(--accent-dim);
+      border-color: oklch(55% 0.27 268 / 0.45);
+      background: oklch(55% 0.27 268 / 0.07);
+    }
+
+    /* ── Process Timeline ─────────────────────────────────────── */
+    .process-timeline {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      border-top: 1px solid var(--border);
+    }
+    @media (min-width: 768px) {
+      .process-timeline {
+        grid-template-columns: repeat(3, 1fr);
+        position: relative;
+      }
+      .process-timeline::before {
+        content: '';
+        position: absolute;
+        top: 28px;
+        left: calc(16.666% + 12px);
+        right: calc(16.666% + 12px);
+        height: 1px;
+        background: linear-gradient(90deg, var(--accent) 0%, var(--border-2) 100%);
+        z-index: 0;
+      }
+    }
+
+    .process-step {
+      padding: var(--sp-10) var(--sp-8) var(--sp-8);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      opacity: 0;
+      transform: translateY(16px);
+      transition:
+        opacity  500ms var(--ease-expo),
+        transform 500ms var(--ease-expo);
+    }
+    .process-step.visible { opacity: 1; transform: none; }
+    .process-step:nth-child(1) { transition-delay: 0ms; }
+    .process-step:nth-child(2) { transition-delay: 150ms; }
+    .process-step:nth-child(3) { transition-delay: 300ms; }
+
+    @media (min-width: 768px) {
+      .process-step {
+        border-bottom: none;
+        border-right: 1px solid var(--border);
+        padding: var(--sp-8);
+      }
+      .process-step:last-child { border-right: none; }
+    }
+
+    .process-step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--surface-2);
+      border: 1px solid var(--border-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 660;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+      margin-bottom: var(--sp-6);
+      position: relative;
+      z-index: 1;
+    }
+
+    .process-step-title {
+      font-size: 1rem;
+      font-weight: 660;
+      color: var(--fg);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--sp-2);
+    }
+
+    .process-step-sub {
+      font-size: 0.72rem;
+      font-weight: 560;
+      color: var(--accent-dim);
+      letter-spacing: 0.02em;
+      margin-bottom: var(--sp-4);
+    }
+
+    .process-step-desc {
+      font-size: 0.84rem;
+      color: var(--fg-muted);
+      line-height: 1.72;
+    }
+
+    /* ── Reduced motion overrides ─────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      .anim-rhombus,
+      .anim-rhombus::before,
+      .anim-rhombus::after,
+      .skills-hero-bg::before,
+      .expertise-badge::before,
+      .glass-card-bar-fill,
+      .ripple-ring { animation: none; }
+      .scroll-bar-fill,
+      .process-step,
+      .skill-tag { transition: none; }
+    }
+  </style>
+</head>
+<body data-page="skills">
+
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <nav class="nav" role="navigation" aria-label="Hauptnavigation">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="NT Digital – Startseite">
+        <span class="logo-mark">
+          <span class="logo-nt">N</span><span class="logo-triangle" aria-hidden="true"></span><span class="logo-nt">T</span>
+        </span>
+        <span class="logo-digital">Digital</span>
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="about.html" data-nav="about">Über uns</a></li>
+        <li><a href="skills.html" data-nav="skills">Was wir können</a></li>
+        <li><a href="projekte.html" data-nav="projekte">Projekte</a></li>
+        <li><a href="kontakt.html" data-nav="kontakt">Kontakt</a></li>
+      </ul>
+
+      <a href="kontakt.html" class="btn btn-primary nav-cta">Projekt anfragen</a>
+
+      <button class="hamburger" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav-mobile" role="dialog" aria-label="Mobile Navigation">
+    <a href="about.html" data-nav="about">Über uns</a>
+    <a href="skills.html" data-nav="skills">Was wir können</a>
+    <a href="projekte.html" data-nav="projekte">Projekte</a>
+    <a href="kontakt.html" data-nav="kontakt">Kontakt</a>
+    <a href="kontakt.html" class="btn btn-primary mobile-cta">Projekt anfragen</a>
+  </div>
+
+  <main>
+
+    <!-- ── Hero ─────────────────────────────────────────────── -->
+    <section class="hero" style="position: relative;">
+      <div class="skills-hero-bg" aria-hidden="true"></div>
+      <div class="container" style="position: relative; z-index: 1;">
+        <div class="hero-body">
+          <div class="expertise-badge reveal">EXPERTISE</div>
+
+          <h1 class="hero-title reveal reveal-delay-1">
+            Was wir<br>können.
+          </h1>
+
+          <div class="reveal reveal-delay-2">
+            <hr class="hero-rule" style="margin-bottom: var(--sp-8);">
+            <p class="hero-subtitle">
+              <strong>Nicht reden. Zeigen.</strong><br>
+              Jede Technik auf dieser Seite ist live demonstriert –<br>
+              kein Screenshot, kein Mockup.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Frontend-Handwerk ─────────────────────────────────── -->
+    <section>
+      <div class="container">
+        <div class="section-intro reveal">
+          <p class="section-eyebrow">Frontend-Handwerk</p>
+          <h2>Techniken die wir<br>täglich einsetzen.</h2>
+          <p>Jede Karte unten demonstriert die Technik live – nicht beschrieben, sondern sichtbar.</p>
+        </div>
+
+        <div class="demo-grid">
+
+          <!-- Card 1: CSS Animations -->
+          <div class="demo-card reveal">
+            <div class="demo-stage">
+              <div class="anim-rhombus" aria-hidden="true"></div>
+            </div>
+            <div class="demo-meta">
+              <p class="demo-label">CSS Animationen</p>
+              <p class="demo-tags">@keyframes · transform · cubic-bezier</p>
+              <p class="demo-desc">Flüssige Bewegungen ohne JavaScript. Performant, präzise, kontrolliert.</p>
+            </div>
+          </div>
+
+          <!-- Card 2: Micro-Interactions -->
+          <div class="demo-card reveal reveal-delay-1">
+            <div class="demo-stage">
+              <button class="micro-btn" id="micro-btn" aria-label="Micro-Interaction Demo">
+                Klick mich
+              </button>
+            </div>
+            <div class="demo-meta">
+              <p class="demo-label">Micro-Interactions</p>
+              <p class="demo-tags">transition · :hover · :active</p>
+              <p class="demo-desc">Kleine Details die grosse Wirkung haben. Jede Interaktion fühlt sich bewusst an.</p>
+            </div>
+          </div>
+
+          <!-- Card 3: Glassmorphism -->
+          <div class="demo-card reveal reveal-delay-2">
+            <div class="demo-stage">
+              <div class="glass-bg" aria-hidden="true"></div>
+              <div class="glass-card" role="img" aria-label="Glassmorphism Demo-Karte">
+                <p class="glass-card-title">Glassmorphism</p>
+                <p class="glass-card-sub">backdrop-filter · blur(14px)</p>
+                <div class="glass-card-bar" aria-hidden="true">
+                  <div class="glass-card-bar-fill"></div>
+                </div>
+              </div>
+            </div>
+            <div class="demo-meta">
+              <p class="demo-label">Glassmorphism</p>
+              <p class="demo-tags">backdrop-filter · rgba · blur</p>
+              <p class="demo-desc">Tiefe und Atmosphäre durch Transparenz. Modern ohne übertrieben zu wirken.</p>
+            </div>
+          </div>
+
+          <!-- Card 4: Responsive Layout -->
+          <div class="demo-card reveal" id="resp-card">
+            <div class="demo-stage" style="flex-direction: column; gap: var(--sp-3); height: auto; padding-block: var(--sp-2);">
+              <div class="resp-toggle" role="group" aria-label="Spalten wählen">
+                <button class="resp-btn active" data-cols="1" aria-pressed="true">1 Col</button>
+                <button class="resp-btn" data-cols="2" aria-pressed="false">2 Col</button>
+                <button class="resp-btn" data-cols="3" aria-pressed="false">3 Col</button>
+              </div>
+              <div class="resp-mini-grid" data-cols="1" id="resp-grid" aria-live="polite">
+                <div class="resp-mini-cell"></div>
+                <div class="resp-mini-cell"></div>
+                <div class="resp-mini-cell"></div>
+              </div>
+            </div>
+            <div class="demo-meta">
+              <p class="demo-label">Responsive Design</p>
+              <p class="demo-tags">CSS Grid · Flexbox · clamp()</p>
+              <p class="demo-desc">Mobile-First von Anfang an. Jedes Layout funktioniert auf jedem Gerät.</p>
+            </div>
+          </div>
+
+          <!-- Card 5: Scroll Animations -->
+          <div class="demo-card reveal reveal-delay-1">
+            <div class="demo-stage">
+              <div class="scroll-bars-wrap" aria-label="Scroll-Animations Demo">
+                <div class="scroll-bar-row">
+                  <span class="scroll-bar-label">CSS</span>
+                  <div class="scroll-bar-track">
+                    <div class="scroll-bar-fill" style="width: 92%;"></div>
+                  </div>
+                </div>
+                <div class="scroll-bar-row">
+                  <span class="scroll-bar-label">JS</span>
+                  <div class="scroll-bar-track">
+                    <div class="scroll-bar-fill" style="width: 78%;"></div>
+                  </div>
+                </div>
+                <div class="scroll-bar-row">
+                  <span class="scroll-bar-label">HTML</span>
+                  <div class="scroll-bar-track">
+                    <div class="scroll-bar-fill" style="width: 95%;"></div>
+                  </div>
+                </div>
+                <div class="scroll-bar-row">
+                  <span class="scroll-bar-label">UX</span>
+                  <div class="scroll-bar-track">
+                    <div class="scroll-bar-fill" style="width: 85%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="demo-meta">
+              <p class="demo-label">Scroll Animationen</p>
+              <p class="demo-tags">IntersectionObserver · translateX · stagger</p>
+              <p class="demo-desc">Inhalte erscheinen wenn sie relevant werden. Nie störend, immer purposeful.</p>
+            </div>
+          </div>
+
+          <!-- Card 6: Typography -->
+          <div class="demo-card reveal reveal-delay-2" id="typo-card">
+            <div class="demo-stage" style="flex-direction: column; gap: var(--sp-3);">
+              <div>
+                <div class="typo-counter" id="typo-counter" aria-live="polite">0</div>
+                <div class="typo-counter-sub">Zeilen Code · und zählend</div>
+              </div>
+              <div class="typo-split-word" role="img" aria-label="Hover-Effekt Demo">
+                <span>D</span><span>E</span><span>S</span><span>I</span><span>G</span><span>N</span>
+              </div>
+            </div>
+            <div class="demo-meta">
+              <p class="demo-label">Typografie &amp; Text</p>
+              <p class="demo-tags">Bricolage · clamp() · letter-spacing</p>
+              <p class="demo-desc">Schrift die kommuniziert. Grösse, Gewicht und Abstand als Design-Werkzeug.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Skill Tags ─────────────────────────────────────────── -->
+    <section>
+      <div class="container">
+        <div class="section-intro reveal">
+          <p class="section-eyebrow">Das komplette Toolkit</p>
+          <h2>Und noch mehr.</h2>
+          <p>Alles was wir täglich einsetzen, um Websites zu bauen die funktionieren.</p>
+        </div>
+
+        <div class="tag-cloud-section" id="tag-cloud">
+
+          <div class="tag-row">
+            <span class="skill-tag">HTML5</span>
+            <span class="skill-tag">CSS3</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">Responsive Design</span>
+            <span class="skill-tag">Mobile-First</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">GitHub Pages</span>
+            <span class="skill-tag">Vercel</span>
+          </div>
+
+          <div class="tag-row">
+            <span class="skill-tag">Flexbox</span>
+            <span class="skill-tag">CSS Grid</span>
+            <span class="skill-tag">Custom Properties</span>
+            <span class="skill-tag">Animations</span>
+            <span class="skill-tag">Glassmorphism</span>
+            <span class="skill-tag">Dark Mode</span>
+            <span class="skill-tag">clamp()</span>
+            <span class="skill-tag">backdrop-filter</span>
+          </div>
+
+          <div class="tag-row">
+            <span class="skill-tag">DOM Manipulation</span>
+            <span class="skill-tag">Intersection Observer</span>
+            <span class="skill-tag">Event Listeners</span>
+            <span class="skill-tag">Fetch API</span>
+            <span class="skill-tag">LocalStorage</span>
+            <span class="skill-tag">Form Validation</span>
+          </div>
+
+          <div class="tag-row">
+            <span class="skill-tag">Linux</span>
+            <span class="skill-tag">PowerShell</span>
+            <span class="skill-tag">Bash</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Networking</span>
+            <span class="skill-tag">VS Code</span>
+            <span class="skill-tag">Claude Code</span>
+            <span class="skill-tag">Chrome DevTools</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Prozess ────────────────────────────────────────────── -->
+    <section>
+      <div class="container">
+        <div class="section-intro reveal">
+          <p class="section-eyebrow">Wie wir arbeiten</p>
+          <h2>Von der Idee zur<br>fertigen Website.</h2>
+        </div>
+
+        <div class="process-timeline">
+
+          <div class="process-step">
+            <div class="process-step-num">01</div>
+            <p class="process-step-title">Gespräch</p>
+            <p class="process-step-sub">Wir hören zu.</p>
+            <p class="process-step-desc">
+              Kein Tech-Jargon. Kein Sales-Pitch.
+              Wir wollen verstehen was du brauchst –
+              und was du dir wünschst.
+            </p>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step-num">02</div>
+            <p class="process-step-title">Umsetzung</p>
+            <p class="process-step-sub">Wir bauen.</p>
+            <p class="process-step-desc">
+              Sauber, schnell, mobile-first.
+              Kein Template, kein Page-Builder –
+              Handarbeit die sich im Code zeigt.
+            </p>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step-num">03</div>
+            <p class="process-step-title">Übergabe</p>
+            <p class="process-step-sub">Du bekommst alles.</p>
+            <p class="process-step-desc">
+              Code, Domain-Setup, Erklärung inklusive.
+              Du bist nie abhängig von uns –
+              das ist Absicht.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA ───────────────────────────────────────────────── -->
+    <section class="tight">
+      <div class="container">
+        <div class="cta-strip reveal">
+          <div>
+            <h2>Überzeugt?</h2>
+            <p style="margin-top: var(--sp-3); font-size: 0.92rem;">Dann lass uns über dein Projekt reden.</p>
+          </div>
+          <a href="kontakt.html" class="btn btn-primary">Projekt anfragen →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="index.html" class="footer-logo">
+          <span class="logo-mark">
+            <span class="logo-nt">N</span><span class="logo-triangle" aria-hidden="true"></span><span class="logo-nt">T</span>
+          </span>
+          <span class="logo-digital">Digital</span>
+        </a>
+        <div class="footer-copy">
+          <span>© 2026 NT Digital</span>
+          <span class="footer-sep">·</span>
+          <a href="mailto:nt-digital@mail.ch">nt-digital@mail.ch</a>
+          <span class="footer-sep">·</span>
+          <a href="https://github.com/NT-Digital-CH/NT-Digital" target="_blank" rel="noopener">github.com/NT-Digital</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      /* ── Ripple on micro-btn ─────────────────────────────── */
+      var microBtn = document.getElementById('micro-btn');
+      if (microBtn) {
+        microBtn.addEventListener('click', function (e) {
+          var rect = microBtn.getBoundingClientRect();
+          var size = Math.max(rect.width, rect.height);
+          var x = e.clientX - rect.left - size / 2;
+          var y = e.clientY - rect.top  - size / 2;
+          var ring = document.createElement('span');
+          ring.className = 'ripple-ring';
+          ring.style.cssText = 'width:' + size + 'px;height:' + size + 'px;left:' + x + 'px;top:' + y + 'px;';
+          microBtn.appendChild(ring);
+          ring.addEventListener('animationend', function () { ring.remove(); });
+        });
+      }
+
+      /* ── Responsive grid toggle ──────────────────────────── */
+      var respCard = document.getElementById('resp-card');
+      if (respCard) {
+        var respGrid = document.getElementById('resp-grid');
+        var respBtns = respCard.querySelectorAll('.resp-btn');
+        respBtns.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var cols = btn.getAttribute('data-cols');
+            respGrid.setAttribute('data-cols', cols);
+            respBtns.forEach(function (b) {
+              b.classList.toggle('active', b === btn);
+              b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+            });
+          });
+        });
+      }
+
+      /* ── Scroll-bar cards: IntersectionObserver ──────────── */
+      var demoBars = document.querySelectorAll('.demo-card');
+      if (demoBars.length) {
+        var barObs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              barObs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2 });
+        demoBars.forEach(function (card) { barObs.observe(card); });
+      }
+
+      /* ── Tag cloud stagger ───────────────────────────────── */
+      var tagCloud = document.getElementById('tag-cloud');
+      if (tagCloud) {
+        var tags = tagCloud.querySelectorAll('.skill-tag');
+        var tagObs = new IntersectionObserver(function (entries) {
+          if (entries[0].isIntersecting) {
+            tags.forEach(function (tag, i) {
+              setTimeout(function () { tag.classList.add('visible'); }, i * 30);
+            });
+            tagObs.disconnect();
+          }
+        }, { threshold: 0.1 });
+        tagObs.observe(tagCloud);
+      }
+
+      /* ── Process steps stagger ───────────────────────────── */
+      var steps = document.querySelectorAll('.process-step');
+      if (steps.length) {
+        var stepObs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              stepObs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+        steps.forEach(function (step) { stepObs.observe(step); });
+      }
+
+      /* ── Typing counter ──────────────────────────────────── */
+      var counterEl = document.getElementById('typo-counter');
+      if (counterEl) {
+        var target = 2847;
+        var started = false;
+        var counterObs = new IntersectionObserver(function (entries) {
+          if (entries[0].isIntersecting && !started) {
+            started = true;
+            var start = 0;
+            var duration = 1800;
+            var startTime = null;
+            function tick(ts) {
+              if (!startTime) startTime = ts;
+              var progress = Math.min((ts - startTime) / duration, 1);
+              var eased = 1 - Math.pow(1 - progress, 3);
+              counterEl.textContent = Math.round(eased * target).toLocaleString('de-CH');
+              if (progress < 1) requestAnimationFrame(tick);
+            }
+            requestAnimationFrame(tick);
+            counterObs.disconnect();
+          }
+        }, { threshold: 0.4 });
+        counterObs.observe(counterEl);
+      }
+
+    }());
+  </script>
+</body>
+</html>
