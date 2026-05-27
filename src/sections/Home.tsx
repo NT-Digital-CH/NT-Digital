@@ -1,3 +1,5 @@
+import { ScrambleTitle } from '../components/ScrambleTitle';
+
 const services = [
   {
     num: '01',
@@ -23,13 +25,12 @@ export function Home() {
         <div className="container">
           <div className="hero-body">
             <p className="hero-eyebrow reveal">Lernende ICT-Fachmänner · Schweiz</p>
-            <h1 className="hero-title reveal reveal-delay-1">
-              Wir bauen
-              <br />
-              Websites.
-              <br />
-              <em>Die auffallen.</em>
-            </h1>
+            <ScrambleTitle
+              prefix="Wir bauen Websites."
+              words={['Die auffallen.', 'Die überzeugen.', 'Die auffallen.']}
+              className="hero-title"
+              scrambleChars="NT01_▣◎⬡"
+            />
 
             <div className="reveal reveal-delay-2">
               <hr className="hero-rule home-hero-rule" />

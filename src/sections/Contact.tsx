@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ScrambleTitle } from '../components/ScrambleTitle';
 
 const contactRows = [
   { label: 'E-Mail', value: <a href="mailto:nt-digital@mail.ch">nt-digital@mail.ch</a> },
@@ -32,11 +33,11 @@ export function Contact() {
         <div className="container">
           <div className="hero-body">
             <p className="hero-eyebrow reveal">Kontakt</p>
-            <h1 className="hero-title reveal reveal-delay-1">
-              Lass uns
-              <br />
-              <em>reden.</em>
-            </h1>
+            <ScrambleTitle
+              prefix="Lass uns"
+              words={['reden.', 'anfangen.', 'reden.']}
+              className="hero-title"
+            />
             <p className="lead reveal reveal-delay-2">
               Kein langes Hin und Her.
               <br />
