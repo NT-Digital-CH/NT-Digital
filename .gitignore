@@ -7,3 +7,5 @@ vite-dev*.log
 .env.local
 .env.*.local
 !.env.example
+.codex-vite.err.log
+.codex-vite.log
