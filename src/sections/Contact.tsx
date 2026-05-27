@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ScrambleTitle } from '../components/ScrambleTitle';
 
 const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY as string | undefined;
 const endpoint = ['https://api.web3forms.com', 'submit'].join('/');
@@ -108,11 +109,11 @@ export function Contact() {
             <div className="contact-left">
               <div className="hero-body">
                 <p className="hero-eyebrow reveal">Kontakt</p>
-                <h1 className="hero-title reveal reveal-delay-1">
-                  Lass uns
-                  <br />
-                  <em>reden.</em>
-                </h1>
+                <ScrambleTitle
+                  prefix="Lass uns"
+                  words={['reden.', 'anfangen.', 'reden.']}
+                  className="hero-title"
+                />
                 <p className="lead reveal reveal-delay-2">
                   Kein langes Hin und Her.
                   <br />

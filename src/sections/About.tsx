@@ -1,6 +1,9 @@
+import { ScrambleTitle } from '../components/ScrambleTitle';
+
 const teamMembers = [
   {
     name: 'Jones Thala',
+    img: '/jonesthala.png',
     role: 'Co-Founder · Web Developer',
     bio: 'ICT-Fachmann im 2. Lehrjahr. Fokus auf sauberen Code, modernes Web-Design und Systeme die funktionieren. Code ist für mich kein Job - es ist Handwerk.',
     github: 'https://github.com/NT-Digital-CH',
@@ -9,6 +12,7 @@ const teamMembers = [
   },
   {
     name: 'Ilija Nikolic',
+    img: '/ilijanikolic.jpg',
     role: 'Co-Founder · Web Developer',
     bio: 'ICT-Fachmann im 2. Lehrjahr. Gleiche Leidenschaft, gleiche Ziele - zusammen bauen wir Websites die überzeugen. Qualität ist kein Zufall, sondern Entscheidung.',
     github: 'https://github.com/nexpriv',
@@ -65,11 +69,12 @@ export function About() {
         <div className="container">
           <div className="hero-body">
             <p className="hero-eyebrow reveal">Das Team</p>
-            <h1 className="hero-title reveal reveal-delay-1">
-              Nikolic &amp;
-              <br />
-              Thala.
-            </h1>
+            <ScrambleTitle
+              prefix="Nikolic & Thala –"
+              words={['wir tippen. du wächst.', 'lernende. ambitioniert.', 'wir tippen. du wächst.']}
+              className="hero-title"
+              delay={0.4}
+            />
             <p className="lead reveal reveal-delay-2">
               Zwei Lernende ICT-Fachmänner aus der Schweiz. NT Digital ist unser gemeinsames Vorhaben: professionelle
               Web-Lösungen für KMUs, die sonst keine grosse Agentur bezahlen könnten.
@@ -83,24 +88,29 @@ export function About() {
           <div className="team-list">
             {teamMembers.map((member, index) => (
               <article className={`team-member reveal ${index === 1 ? 'reveal-delay-1' : ''}`} key={member.name}>
-                <div className="team-member-head">
-                  <span className="team-name">{member.name}</span>
-                  <span className="team-role">{member.role}</span>
+                <div className="team-member-img-wrap">
+                  <img src={member.img} alt={member.name} className="team-member-img" width={200} height={200} />
                 </div>
-                <p className="team-bio">{member.bio}</p>
-                <p className="team-skills-inline" aria-label="Technologien">
-                  HTML · CSS · JavaScript · Responsive Design · Git · Linux · Networking · PowerShell · Bash · Docker ·
-                  VS Code
-                </p>
-                <div className="team-links">
-                  <a href={member.github} className="team-link" target="_blank" rel="noopener">
-                    <GithubIcon />
-                    {member.githubLabel}
-                  </a>
-                  <a href={member.linkedin} className="team-link" target="_blank" rel="noopener">
-                    <LinkedInIcon />
-                    LinkedIn ↗
-                  </a>
+                <div className="team-member-content">
+                  <div className="team-member-head">
+                    <span className="team-name">{member.name}</span>
+                    <span className="team-role">{member.role}</span>
+                  </div>
+                  <p className="team-bio">{member.bio}</p>
+                  <p className="team-skills-inline" aria-label="Technologien">
+                    HTML · CSS · JavaScript · Responsive Design · Git · Linux · Networking · PowerShell · Bash · Docker ·
+                    VS Code
+                  </p>
+                  <div className="team-links">
+                    <a href={member.github} className="team-link" target="_blank" rel="noopener">
+                      <GithubIcon />
+                      {member.githubLabel}
+                    </a>
+                    <a href={member.linkedin} className="team-link" target="_blank" rel="noopener">
+                      <LinkedInIcon />
+                      LinkedIn ↗
+                    </a>
+                  </div>
                 </div>
               </article>
             ))}
