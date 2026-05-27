@@ -4,11 +4,13 @@ import { Navbar } from './components/Navbar';
 import { ScrollProgress } from './components/ScrollProgress';
 import { About } from './sections/About';
 import { Contact } from './sections/Contact';
+import { Datenschutz } from './sections/Datenschutz';
 import { Home } from './sections/Home';
+import { Impressum } from './sections/Impressum';
 import { Projects } from './sections/Projects';
 import { Skills } from './sections/Skills';
 
-type PageKey = 'home' | 'about' | 'skills' | 'projekte' | 'kontakt';
+type PageKey = 'home' | 'about' | 'skills' | 'projekte' | 'kontakt' | 'impressum' | 'datenschutz';
 
 const pageMeta: Record<PageKey, { title: string; description: string }> = {
   home: {
@@ -35,6 +37,14 @@ const pageMeta: Record<PageKey, { title: string; description: string }> = {
     title: 'Kontakt - NT Digital',
     description: 'NT Digital - Kontakt. Schreib uns direkt, wir melden uns schnell.',
   },
+  impressum: {
+    title: 'Impressum - NT Digital',
+    description: 'Impressum von NT Digital mit Betreiberangaben und Kontaktadresse.',
+  },
+  datenschutz: {
+    title: 'Datenschutz - NT Digital',
+    description: 'Datenschutzerklärung von NT Digital zur Bearbeitung von Personendaten.',
+  },
 };
 
 function pageFromPath(pathname: string): PageKey {
@@ -45,6 +55,8 @@ function pageFromPath(pathname: string): PageKey {
   if (normalized === '/skills' || normalized === '/skills.html') return 'skills';
   if (normalized === '/projekte' || normalized === '/projekte.html') return 'projekte';
   if (normalized === '/kontakt' || normalized === '/kontakt.html') return 'kontakt';
+  if (normalized === '/impressum' || normalized === '/impressum.html') return 'impressum';
+  if (normalized === '/datenschutz' || normalized === '/datenschutz.html') return 'datenschutz';
 
   return 'home';
 }
@@ -213,6 +225,10 @@ export function App() {
         return Projects;
       case 'kontakt':
         return Contact;
+      case 'impressum':
+        return Impressum;
+      case 'datenschutz':
+        return Datenschutz;
       case 'home':
       default:
         return Home;
