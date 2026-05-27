@@ -643,11 +643,23 @@ section.flush-top{ padding-top: 0; }
 @media (max-width: 640px) {
   .team-member {
     grid-template-columns: 1fr;
+    padding-block: var(--sp-10);
+    text-align: center;
   }
-  .team-member-img-wrap,
+  .team-member-img-wrap {
+    width: 140px;
+    height: 140px;
+    margin-inline: auto;
+  }
   .team-member-img {
-    width: 120px;
-    height: 120px;
+    width: 140px;
+    height: 140px;
+  }
+  .team-member-head {
+    justify-content: center;
+  }
+  .team-links {
+    justify-content: center;
   }
 }
 
@@ -1894,7 +1906,7 @@ body[data-page='kontakt'] .footer {
 
 /* ── ScrambleTitle ───────────────────────────────────────────── */
 .scramble-title {
-  font-size: clamp(4.5rem, 9vw, 7.5rem);
+  font-size: clamp(2.8rem, 9vw, 7.5rem);
   line-height: 0.92;
   letter-spacing: -0.04em;
   font-weight: 760;
