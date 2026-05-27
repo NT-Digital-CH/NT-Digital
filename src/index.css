@@ -1315,7 +1315,7 @@ body[data-page='kontakt'] .footer {
 @media (min-width: 768px) {
   .nav-cta   { display: flex; }
 
-  .contact-layout { grid-template-columns: 1fr 1.5fr; }
+  .contact-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); }
 
   .contact-next-steps {
     min-height: 128svh;

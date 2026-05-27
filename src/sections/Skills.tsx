@@ -305,7 +305,7 @@ export function Skills() {
             <p className="hero-eyebrow">Frontend · Entwicklung · Schweiz</p>
             <ScrambleTitle
               prefix="Was wir"
-              words={['können.', 'bauen.', 'liefern.']}
+              words={['können.', 'bauen.', 'liefern.', 'zeigen.']}
               className="hero-title"
             />
             <span className="hero-title-divider" aria-hidden="true" />

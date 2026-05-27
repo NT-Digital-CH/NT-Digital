@@ -27,9 +27,8 @@ export function Home() {
             <p className="hero-eyebrow reveal">Lernende ICT-Fachmänner · Schweiz</p>
             <ScrambleTitle
               prefix="Wir bauen Websites."
-              words={['Die auffallen.', 'Die überzeugen.', 'Die auffallen.']}
+              words={['Die auffallen.', 'Die performen.', 'Die überzeugen.', 'Die bleiben.']}
               className="hero-title"
-              scrambleChars="NT01_▣◎⬡"
             />
 
             <div className="reveal reveal-delay-2">
