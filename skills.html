@@ -15,7 +15,10 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/SplitText.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/TextPlugin.min.js"></script>
+<<<<<<< Updated upstream
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrambleTextPlugin.min.js"></script>
+=======
+>>>>>>> Stashed changes
 
   <style>
     /* ── Skills page – scoped styles ─────────────────────────── */
@@ -81,7 +84,16 @@
       font-weight: 400;
       letter-spacing: 0.22em;
       text-transform: uppercase;
+<<<<<<< Updated upstream
       color: var(--fg-subtle);
+=======
+      color: var(--accent-dim);
+      border: 1px solid oklch(55% 0.27 268 / 0.28);
+      background: oklch(55% 0.27 268 / 0.07);
+      padding: 5px 12px;
+      border-radius: 2px;
+      margin-bottom: var(--sp-8);
+>>>>>>> Stashed changes
       will-change: transform, opacity;
     }
 
@@ -101,6 +113,8 @@
       margin: 0 auto;
       opacity: 0.6;
     }
+
+    .hero-title { will-change: transform, opacity; }
 
     .hero-subtitle {
       font-size: clamp(0.9rem, 1.5vw, 1.05rem);
@@ -181,8 +195,11 @@
       position: relative;
       overflow: hidden;
       will-change: transform, opacity;
+<<<<<<< Updated upstream
       transition: background var(--t-base);
       transform-style: preserve-3d;
+=======
+>>>>>>> Stashed changes
     }
     .demo-card:hover { background: var(--surface-2); }
 
@@ -232,6 +249,7 @@
       line-height: 1.65;
     }
 
+<<<<<<< Updated upstream
     /* Card corner number */
     .demo-card-num {
       position: absolute;
@@ -246,6 +264,9 @@
     }
 
     /* ── CARD 1: GSAP Shape ──────────────────────────────────── */
+=======
+    /* ── CARD 1: GSAP Rotation (replaces CSS animation) ─────── */
+>>>>>>> Stashed changes
     .anim-rhombus {
       width: 52px;
       height: 52px;
@@ -263,8 +284,13 @@
       animation: rhombus-pulse 3s ease-in-out infinite;
     }
     .anim-rhombus::after {
+<<<<<<< Updated upstream
       inset: -20px;
       animation-delay: 0.5s;
+=======
+      inset: -16px;
+      animation-delay: 0.4s;
+>>>>>>> Stashed changes
     }
     @keyframes rhombus-pulse {
       0%, 100% { opacity: 0.5; transform: scale(1); }
@@ -319,11 +345,19 @@
       font-weight: 580;
       color: var(--accent-dim);
       cursor: pointer;
+<<<<<<< Updated upstream
       min-height: 48px;
+=======
+      min-height: 44px;
+>>>>>>> Stashed changes
       overflow: hidden;
       letter-spacing: -0.01em;
       user-select: none;
       will-change: transform;
+<<<<<<< Updated upstream
+=======
+      /* background/border transition still CSS; scale/shadow via GSAP */
+>>>>>>> Stashed changes
       transition:
         background 250ms ease,
         border-color 250ms ease,
@@ -427,15 +461,27 @@
       color: var(--accent-dim);
       background: oklch(55% 0.27 268 / 0.08);
     }
+<<<<<<< Updated upstream
     .resp-mini-grid { display: grid; gap: 4px; }
+=======
+    .resp-mini-grid {
+      display: grid;
+      gap: 4px;
+    }
+>>>>>>> Stashed changes
     .resp-mini-grid[data-cols="1"] { grid-template-columns: 1fr; }
     .resp-mini-grid[data-cols="2"] { grid-template-columns: repeat(2, 1fr); }
     .resp-mini-grid[data-cols="3"] { grid-template-columns: repeat(3, 1fr); }
     .resp-mini-cell {
       height: 28px;
       border-radius: 2px;
+<<<<<<< Updated upstream
       background: oklch(55% 0.27 268 / 0.1);
       border: 1px solid oklch(55% 0.27 268 / 0.18);
+=======
+      background: oklch(55% 0.27 268 / 0.12);
+      border: 1px solid oklch(55% 0.27 268 / 0.2);
+>>>>>>> Stashed changes
       will-change: transform, opacity;
     }
 
@@ -457,6 +503,7 @@
       background: var(--accent);
       transform-origin: left center;
       will-change: transform;
+<<<<<<< Updated upstream
     }
 
     /* Wide card 5 – side-by-side layout */
@@ -492,6 +539,8 @@
       font-weight: 500;
       max-width: 18ch;
       line-height: 1.5;
+=======
+>>>>>>> Stashed changes
     }
 
     /* ── CARD 6: Typography ──────────────────────────────────── */
@@ -524,8 +573,13 @@
     .typo-split-word:hover span:nth-child(odd)  { transform: translateY(-5px); }
     .typo-split-word:hover span:nth-child(even) { transform: translateY(5px); }
 
+<<<<<<< Updated upstream
     /* ── Section header above grid ──────────────────────────── */
     .section-header-inline {
+=======
+    /* ── Skill Tags Cloud ─────────────────────────────────────── */
+    .tag-row {
+>>>>>>> Stashed changes
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
@@ -601,8 +655,18 @@
       flex-shrink: 0;
       transition: color var(--t-fast), border-color var(--t-fast), background var(--t-fast);
       cursor: default;
+<<<<<<< Updated upstream
     }
     .marquee-tag:hover {
+=======
+      will-change: transform, opacity;
+      transition:
+        color var(--t-fast),
+        border-color var(--t-fast),
+        background var(--t-fast);
+    }
+    .skill-tag:hover {
+>>>>>>> Stashed changes
       color: var(--accent-dim);
       border-color: oklch(55% 0.27 268 / 0.4);
       background: oklch(55% 0.27 268 / 0.06);
@@ -654,6 +718,10 @@
       position: relative;
       will-change: transform, opacity;
     }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     @media (min-width: 768px) {
       .process-step {
         border-bottom: none;
@@ -822,6 +890,7 @@
       flex: 1;
     }
 
+<<<<<<< Updated upstream
     .h-scroll-tag {
       font-family: 'DM Mono', monospace;
       font-size: 0.6rem;
@@ -831,13 +900,100 @@
     }
 
     /* ── Reduced motion ──────────────────────────────────────── */
+=======
+    /* ── Cursor Magic Demo ────────────────────────────────────── */
+    @media (max-width: 767px) {
+      .cursor-magic-section { display: none; }
+    }
+
+    .cursor-demo-area {
+      height: 400px;
+      width: 100%;
+      background: oklch(10% 0.015 268);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      cursor: none;
+    }
+
+    .cursor-hint {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      pointer-events: none;
+      user-select: none;
+    }
+    .cursor-hint-icon {
+      font-size: 1.4rem;
+      color: oklch(55% 0.05 268 / 0.5);
+    }
+    .cursor-hint-text {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: oklch(55% 0.05 268 / 0.35);
+    }
+
+    .cursor-dot {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 18px;
+      height: 18px;
+      margin: -9px 0 0 -9px;
+      border-radius: 50%;
+      background: oklch(58% 0.27 268);
+      box-shadow:
+        0 0 18px oklch(58% 0.27 268 / 0.9),
+        0 0 50px oklch(58% 0.27 268 / 0.4);
+      pointer-events: none;
+      will-change: transform;
+      opacity: 0;
+    }
+
+    .cursor-trail {
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 50%;
+      pointer-events: none;
+      will-change: transform;
+      background: oklch(58% 0.27 268 / 0.35);
+      opacity: 0;
+    }
+    .cursor-trail:nth-child(2)  { width: 15px; height: 15px; margin: -7.5px 0 0 -7.5px; }
+    .cursor-trail:nth-child(3)  { width: 13px; height: 13px; margin: -6.5px 0 0 -6.5px; }
+    .cursor-trail:nth-child(4)  { width: 11px; height: 11px; margin: -5.5px 0 0 -5.5px; }
+    .cursor-trail:nth-child(5)  { width: 9px;  height: 9px;  margin: -4.5px 0 0 -4.5px; }
+    .cursor-trail:nth-child(6)  { width: 7px;  height: 7px;  margin: -3.5px 0 0 -3.5px; }
+    .cursor-trail:nth-child(7)  { width: 5px;  height: 5px;  margin: -2.5px 0 0 -2.5px; }
+    .cursor-trail:nth-child(8)  { width: 3px;  height: 3px;  margin: -1.5px 0 0 -1.5px; }
+
+    /* ── Reduced motion CSS overrides ────────────────────────── */
+>>>>>>> Stashed changes
     @media (prefers-reduced-motion: reduce) {
       .anim-rhombus::before,
       .anim-rhombus::after,
       .skills-hero-bg::before,
+<<<<<<< Updated upstream
       .ripple-ring,
       .marquee-track,
       .marquee-track-rev { animation: none; }
+=======
+      .expertise-badge::before,
+      .ripple-ring { animation: none; }
+      .glass-card-bar-fill,
+      .scroll-bar-fill,
+      .skill-tag,
+      .process-step,
+      .cursor-dot,
+      .cursor-trail { will-change: auto; }
+>>>>>>> Stashed changes
     }
   </style>
 </head>
@@ -876,6 +1032,7 @@
 
   <main style="overflow-x: hidden;">
 
+<<<<<<< Updated upstream
     <!-- ── Hero – Cinematic Center ──────────────────────────── -->
     <section class="hero skills-hero-cinematic" style="position: relative;">
       <div class="skills-hero-bg hero-bg-element" aria-hidden="true"></div>
@@ -902,6 +1059,26 @@
           <div class="hero-ctas">
             <a href="kontakt.html" class="btn btn-primary">Projekt anfragen</a>
             <a href="#demo-anchor" class="btn-ghost">Demos ansehen ↓</a>
+=======
+    <!-- ── Hero ─────────────────────────────────────────────── -->
+    <section class="hero" style="position: relative;">
+      <div class="skills-hero-bg hero-bg-element" aria-hidden="true"></div>
+      <div class="container" style="position: relative; z-index: 1;">
+        <div class="hero-body">
+          <div class="expertise-badge hero-badge">EXPERTISE</div>
+
+          <h1 class="hero-title">
+            Was wir<br>können.
+          </h1>
+
+          <div>
+            <hr class="hero-rule" style="margin-bottom: var(--sp-8);">
+            <p class="hero-subtitle">
+              <strong>Nicht reden. Zeigen.</strong><br>
+              Jede Technik auf dieser Seite ist live demonstriert –<br>
+              kein Screenshot, kein Mockup.
+            </p>
+>>>>>>> Stashed changes
           </div>
 
         </div>
@@ -922,6 +1099,7 @@
 
         <div class="demo-grid">
 
+<<<<<<< Updated upstream
           <!-- Card 1: GSAP Animations – wide -->
           <div class="demo-card">
             <span class="demo-card-num">01</span>
@@ -942,6 +1120,22 @@
           <!-- Card 2: Micro-Interactions – tall -->
           <div class="demo-card">
             <span class="demo-card-num">02</span>
+=======
+          <!-- Card 1: GSAP Animations -->
+          <div class="demo-card">
+            <div class="demo-stage">
+              <div class="anim-rhombus demo-shape-1" aria-hidden="true"></div>
+            </div>
+            <div class="demo-meta">
+              <p class="demo-label">GSAP Animationen</p>
+              <p class="demo-tags">gsap.to · repeat · yoyo · ease</p>
+              <p class="demo-desc">Flüssige Bewegungen mit GSAP. Präzise, performant, frame-perfect.</p>
+            </div>
+          </div>
+
+          <!-- Card 2: Micro-Interactions -->
+          <div class="demo-card">
+>>>>>>> Stashed changes
             <div class="demo-stage">
               <button class="micro-btn demo-btn-interaction" id="micro-btn" aria-label="Micro-Interaction Demo">
                 Klick mich
@@ -950,14 +1144,21 @@
             </div>
             <div class="demo-meta">
               <p class="demo-label">Micro-Interactions</p>
+<<<<<<< Updated upstream
               <p class="demo-tags">back.out · mouseenter · quickTo</p>
+=======
+              <p class="demo-tags">gsap.quickTo · back.out · mouseenter</p>
+>>>>>>> Stashed changes
               <p class="demo-desc">Kleine Details die grosse Wirkung haben. Jede Interaktion fühlt sich bewusst an.</p>
             </div>
           </div>
 
           <!-- Card 3: Glassmorphism -->
           <div class="demo-card">
+<<<<<<< Updated upstream
             <span class="demo-card-num">03</span>
+=======
+>>>>>>> Stashed changes
             <div class="demo-stage">
               <div class="glass-bg" aria-hidden="true"></div>
               <div class="glass-card" role="img" aria-label="Glassmorphism Demo">
@@ -977,7 +1178,10 @@
 
           <!-- Card 4: Responsive Layout -->
           <div class="demo-card" id="resp-card">
+<<<<<<< Updated upstream
             <span class="demo-card-num">04</span>
+=======
+>>>>>>> Stashed changes
             <div class="demo-stage" style="flex-direction: column; gap: var(--sp-3); height: auto; padding-block: var(--sp-2);">
               <div class="resp-toggle" role="group" aria-label="Spalten wählen">
                 <button class="resp-btn active" data-cols="1" aria-pressed="true">1 Col</button>
@@ -997,13 +1201,19 @@
             </div>
           </div>
 
+<<<<<<< Updated upstream
           <!-- Card 5: Scroll Animations – wide -->
           <div class="demo-card demo-card-scroll">
             <span class="demo-card-num">05</span>
+=======
+          <!-- Card 5: Scroll Animations -->
+          <div class="demo-card demo-card-scroll">
+>>>>>>> Stashed changes
             <div class="demo-stage">
               <div class="scroll-bars-wrap" aria-label="Progress Bars Demo">
                 <div class="scroll-bar-row">
                   <span class="scroll-bar-label">CSS</span>
+<<<<<<< Updated upstream
                   <div class="scroll-bar-track"><div class="scroll-bar-fill progress-bar" style="width: 92%;"></div></div>
                 </div>
                 <div class="scroll-bar-row">
@@ -1017,6 +1227,29 @@
                 <div class="scroll-bar-row">
                   <span class="scroll-bar-label">UX</span>
                   <div class="scroll-bar-track"><div class="scroll-bar-fill progress-bar" style="width: 85%;"></div></div>
+=======
+                  <div class="scroll-bar-track">
+                    <div class="scroll-bar-fill progress-bar" style="width: 92%;"></div>
+                  </div>
+                </div>
+                <div class="scroll-bar-row">
+                  <span class="scroll-bar-label">JS</span>
+                  <div class="scroll-bar-track">
+                    <div class="scroll-bar-fill progress-bar" style="width: 78%;"></div>
+                  </div>
+                </div>
+                <div class="scroll-bar-row">
+                  <span class="scroll-bar-label">HTML</span>
+                  <div class="scroll-bar-track">
+                    <div class="scroll-bar-fill progress-bar" style="width: 95%;"></div>
+                  </div>
+                </div>
+                <div class="scroll-bar-row">
+                  <span class="scroll-bar-label">UX</span>
+                  <div class="scroll-bar-track">
+                    <div class="scroll-bar-fill progress-bar" style="width: 85%;"></div>
+                  </div>
+>>>>>>> Stashed changes
                 </div>
               </div>
               <div class="scroll-stage-label" aria-hidden="true">
@@ -1033,7 +1266,10 @@
 
           <!-- Card 6: Typography -->
           <div class="demo-card demo-card-typo" id="typo-card">
+<<<<<<< Updated upstream
             <span class="demo-card-num">06</span>
+=======
+>>>>>>> Stashed changes
             <div class="demo-stage" style="flex-direction: column; gap: var(--sp-3);">
               <div>
                 <div class="typo-counter counter-number" id="typo-counter" data-target="2847" aria-live="polite">0</div>
@@ -1054,15 +1290,50 @@
       </div>
     </section>
 
+<<<<<<< Updated upstream
     <!-- ── Horizontal Scroll Showcase ──────────────────────── -->
     <section class="h-scroll-section">
+=======
+    <!-- ── Cursor Magic ──────────────────────────────────────── -->
+    <section class="cursor-magic-section">
+      <div class="container">
+        <div class="section-intro reveal">
+          <p class="section-eyebrow">GSAP quickTo</p>
+          <h2>Cursor Magic</h2>
+          <p>Bewege die Maus über diesen Bereich</p>
+        </div>
+
+        <div class="cursor-demo-area" aria-label="Cursor-Trail Demo" role="img">
+          <div class="cursor-hint" aria-hidden="true">
+            <span class="cursor-hint-icon">⊕</span>
+            <span class="cursor-hint-text">Maus hier bewegen</span>
+          </div>
+          <div class="cursor-dot" aria-hidden="true"></div>
+          <div class="cursor-trail" aria-hidden="true"></div>
+          <div class="cursor-trail" aria-hidden="true"></div>
+          <div class="cursor-trail" aria-hidden="true"></div>
+          <div class="cursor-trail" aria-hidden="true"></div>
+          <div class="cursor-trail" aria-hidden="true"></div>
+          <div class="cursor-trail" aria-hidden="true"></div>
+          <div class="cursor-trail" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Skill Tags ─────────────────────────────────────────── -->
+    <section>
+>>>>>>> Stashed changes
       <div class="container">
         <p class="section-eyebrow reveal">Scroll-Magie</p>
         <h2 class="reveal">Horizontal. Smooth.<br>Controlled.</h2>
       </div>
 
+<<<<<<< Updated upstream
       <div class="h-scroll-track-wrapper">
         <div class="h-scroll-track">
+=======
+        <div class="tag-cloud-section skill-tags-section" id="tag-cloud">
+>>>>>>> Stashed changes
 
           <div class="h-scroll-card">
             <div class="h-scroll-card-num">01</div>
@@ -1293,6 +1564,7 @@
   <script src="main.js"></script>
   <script>
     /* ── Plugin registration ─────────────────────────────────── */
+<<<<<<< Updated upstream
     gsap.registerPlugin(ScrollTrigger, SplitText, TextPlugin, ScrambleTextPlugin);
     gsap.ticker.lagSmoothing(0);
 
@@ -1307,6 +1579,25 @@
     const scrambleEl = document.querySelector(".hero-scramble-word");
 
     gsap.from(staticPart.chars, {
+=======
+    gsap.registerPlugin(ScrollTrigger, SplitText, TextPlugin);
+
+    /* ── Performance ─────────────────────────────────────────── */
+    gsap.ticker.lagSmoothing(0);
+
+    /* ── Reduced motion ──────────────────────────────────────── */
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      gsap.globalTimeline.timeScale(0);
+      gsap.set([".hero-title", ".demo-card", ".skill-tag", ".process-step"], {
+        opacity: 1, y: 0, scale: 1
+      });
+    }
+
+    /* ── Animation 1: Hero – SplitText reveal ────────────────── */
+    const split = new SplitText(".hero-title", { type: "chars, words" });
+
+    gsap.from(split.chars, {
+>>>>>>> Stashed changes
       opacity: 0,
       y: 60,
       rotateX: -90,
@@ -1316,6 +1607,7 @@
       delay: 0.3
     });
 
+<<<<<<< Updated upstream
     const scrambleWords = ["können.", "bauen.", "liefern.", "können."];
     let wordIndex = 0;
 
@@ -1343,6 +1635,10 @@
     gsap.from(".hero-title-divider", { opacity: 0, scaleY: 0, transformOrigin: "top", duration: 0.5, delay: 1.1, ease: "power2.out" });
     gsap.from(".hero-subtitle",      { opacity: 0, y: 24, duration: 0.6, delay: 1.2 });
     gsap.from(".hero-ctas",          { opacity: 0, y: 20, duration: 0.5, delay: 1.5 });
+=======
+    gsap.from(".hero-badge", { opacity: 0, y: -20, duration: 0.5, delay: 0.1 });
+    gsap.from(".hero-subtitle", { opacity: 0, y: 30, duration: 0.6, delay: 1.2 });
+>>>>>>> Stashed changes
 
     /* ── Animation 2: Demo cards – ScrollTrigger stagger ─────── */
     gsap.from(".demo-card", {
@@ -1353,6 +1649,7 @@
         toggleActions: "play none none reverse"
       },
       opacity: 0,
+<<<<<<< Updated upstream
       y: 60,
       scale: 0.97,
       stagger: { amount: 0.5, from: "start", ease: "power2.inOut" },
@@ -1431,6 +1728,121 @@
     /* ── Animation 6: Card 5 – progress bars ─────────────────── */
     gsap.from(".progress-bar", {
       scrollTrigger: { trigger: ".demo-card-scroll", start: "top 75%" },
+=======
+      y: 80,
+      scale: 0.95,
+      stagger: {
+        amount: 0.6,
+        from: "start",
+        ease: "power2.inOut"
+      },
+      duration: 0.7,
+      ease: "power3.out"
+    });
+
+    /* ── Animation 3: Card 1 – GSAP shape rotation ───────────── */
+    gsap.to(".demo-shape-1", {
+      rotation: 360,
+      duration: 8,
+      repeat: -1,
+      ease: "none"
+    });
+
+    gsap.to(".demo-shape-1", {
+      scale: 1.2,
+      duration: 2,
+      repeat: -1,
+      yoyo: true,
+      ease: "power1.inOut"
+    });
+
+    /* ── Animation 4: Card 2 – Micro-interaction ─────────────── */
+    const demoBtn = document.querySelector(".demo-btn-interaction");
+
+    if (demoBtn) {
+      demoBtn.addEventListener("mouseenter", () => {
+        gsap.to(demoBtn, {
+          scale: 1.06,
+          boxShadow: "0 0 30px rgba(59,79,216,0.5)",
+          duration: 0.3,
+          ease: "back.out(2)"
+        });
+      });
+
+      demoBtn.addEventListener("mouseleave", () => {
+        gsap.to(demoBtn, {
+          scale: 1,
+          boxShadow: "0 0 0px rgba(59,79,216,0)",
+          duration: 0.4,
+          ease: "power2.out"
+        });
+      });
+
+      demoBtn.addEventListener("mousedown", () => {
+        gsap.to(demoBtn, { scale: 0.95, duration: 0.1, ease: "power3.in" });
+      });
+
+      demoBtn.addEventListener("mouseup", () => {
+        gsap.to(demoBtn, { scale: 1.06, duration: 0.2, ease: "back.out(3)" });
+      });
+
+      /* Ripple on click */
+      demoBtn.addEventListener("click", function (e) {
+        const rect = demoBtn.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top  - size / 2;
+        const ring = document.createElement("span");
+        ring.className = "ripple-ring";
+        ring.style.cssText = "width:" + size + "px;height:" + size + "px;left:" + x + "px;top:" + y + "px;";
+        demoBtn.appendChild(ring);
+        ring.addEventListener("animationend", () => ring.remove());
+      });
+    }
+
+    /* ── Animation 5: Card 4 – Responsive grid with GSAP ─────── */
+    const miniGrid  = document.querySelector(".mini-grid");
+    const miniItems = document.querySelectorAll(".mini-grid-item");
+    const respBtns  = document.querySelectorAll(".resp-btn");
+
+    if (miniGrid && miniItems.length) {
+      respBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const cols = parseInt(btn.dataset.cols);
+
+          respBtns.forEach(b => {
+            b.classList.toggle("active", b === btn);
+            b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+          });
+
+          gsap.to(miniItems, {
+            opacity: 0,
+            scale: 0.8,
+            duration: 0.2,
+            stagger: 0.03,
+            onComplete: () => {
+              miniGrid.style.gridTemplateColumns = "repeat(" + cols + ", 1fr)";
+              miniGrid.setAttribute("data-cols", String(cols));
+              gsap.to(miniItems, {
+                opacity: 1,
+                scale: 1,
+                duration: 0.3,
+                stagger: 0.04,
+                ease: "back.out(1.4)"
+              });
+            }
+          });
+        });
+      });
+    }
+
+    /* ── Animation 6: Card 5 – Progress bars ────────────────── */
+    gsap.from(".progress-bar", {
+      scrollTrigger: {
+        trigger: ".demo-card-scroll",
+        start: "top 75%"
+      },
+>>>>>>> Stashed changes
       scaleX: 0,
       transformOrigin: "left center",
       stagger: 0.15,
@@ -1443,7 +1855,12 @@
       trigger: ".demo-card-typo",
       start: "top 75%",
       onEnter: () => {
+<<<<<<< Updated upstream
         document.querySelectorAll(".counter-number").forEach(counter => {
+=======
+        const counters = document.querySelectorAll(".counter-number");
+        counters.forEach(counter => {
+>>>>>>> Stashed changes
           const target = parseInt(counter.dataset.target);
           const obj = { val: 0 };
           gsap.to(obj, {
@@ -1458,6 +1875,7 @@
       }
     });
 
+<<<<<<< Updated upstream
     /* ── Animation 9: Process – timeline sequence ────────────── */
     const processTl = gsap.timeline({
       scrollTrigger: { trigger: ".process-section", start: "top 70%" }
@@ -1536,6 +1954,117 @@
       });
     }
 
+=======
+    /* ── Animation 8: Skill tags – wave stagger ─────────────── */
+    gsap.from(".skill-tag", {
+      scrollTrigger: {
+        trigger: ".skill-tags-section",
+        start: "top 80%"
+      },
+      opacity: 0,
+      y: 30,
+      scale: 0.8,
+      stagger: {
+        amount: 1.2,
+        from: "random",
+        ease: "power1.inOut"
+      },
+      duration: 0.5,
+      ease: "back.out(1.5)"
+    });
+
+    /* ── Animation 9: Process – timeline sequence ────────────── */
+    const processTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".process-section",
+        start: "top 70%"
+      }
+    });
+
+    processTl
+      .from(".process-line", {
+        scaleX: 0,
+        transformOrigin: "left",
+        duration: 1,
+        ease: "power2.inOut"
+      })
+      .from(".process-step", {
+        opacity: 0,
+        y: 40,
+        stagger: 0.2,
+        duration: 0.6,
+        ease: "power3.out"
+      }, "-=0.5");
+
+    /* ── Animation 10: Hero parallax ────────────────────────── */
+    gsap.to(".hero-bg-element", {
+      scrollTrigger: {
+        trigger: ".hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: 1.5
+      },
+      y: -120,
+      opacity: 0.3,
+      ease: "none"
+    });
+
+    /* ── Glass card bar – continuous GSAP loop ───────────────── */
+    gsap.fromTo(".glass-card-bar-fill",
+      { scaleX: 0.47, transformOrigin: "left center" },
+      { scaleX: 1.0, duration: 2.4, repeat: -1, yoyo: true, ease: "power1.inOut" }
+    );
+
+    /* ── Cursor trail demo ───────────────────────────────────── */
+    const cursorDemoArea = document.querySelector(".cursor-demo-area");
+
+    if (cursorDemoArea) {
+      const cursorDot  = cursorDemoArea.querySelector(".cursor-dot");
+      const cursorHint = cursorDemoArea.querySelector(".cursor-hint");
+      const trails     = cursorDemoArea.querySelectorAll(".cursor-trail");
+
+      const xTo = gsap.quickTo(cursorDot, "x", { duration: 0.3, ease: "power3" });
+      const yTo = gsap.quickTo(cursorDot, "y", { duration: 0.3, ease: "power3" });
+
+      cursorDemoArea.addEventListener("mouseenter", (e) => {
+        const rect = cursorDemoArea.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Snap to entry point before revealing so dots don't slide in from (0,0)
+        gsap.set([cursorDot, ...trails], { x, y });
+
+        if (cursorHint) gsap.to(cursorHint, { opacity: 0, duration: 0.2 });
+        gsap.to([cursorDot, ...trails], { opacity: 1, duration: 0.3, stagger: 0.04 });
+      });
+
+      cursorDemoArea.addEventListener("mouseleave", () => {
+        if (cursorHint) gsap.to(cursorHint, { opacity: 1, duration: 0.5, delay: 0.2 });
+        gsap.to([cursorDot, ...trails], { opacity: 0, duration: 0.4 });
+      });
+
+      cursorDemoArea.addEventListener("mousemove", (e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        xTo(x);
+        yTo(y);
+
+        trails.forEach((trail, i) => {
+          gsap.to(trail, {
+            x: x,
+            y: y,
+            duration: 0.3 + i * 0.08,
+            ease: "power2.out",
+            overwrite: true
+          });
+        });
+      });
+    }
+
+    /* ── Refresh after all tweens registered ────────────────── */
+>>>>>>> Stashed changes
     ScrollTrigger.refresh();
   </script>
 </body>
