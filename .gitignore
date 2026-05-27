@@ -3,4 +3,9 @@ dist/
 .vite/
 *.tsbuildinfo
 vite-dev*.log
-.codex-*.log
+.env
+.env.local
+.env.*.local
+!.env.example
+.codex-vite.err.log
+.codex-vite.log
