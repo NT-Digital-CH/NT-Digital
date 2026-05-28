@@ -99,7 +99,7 @@ export function ScrambleTitle({
 
   return (
     <h1 ref={titleRef} className={`scramble-title ${className}`.trim()}>
-      <span ref={prefixRef}>{prefix}</span>
+      <span ref={prefixRef} className="scramble-prefix">{prefix}</span>
       <br />
       <span ref={scrambleRef} className="scramble-word" style={{ display: 'inline-block', width: reservedWidth }}>
         {words[0]}
