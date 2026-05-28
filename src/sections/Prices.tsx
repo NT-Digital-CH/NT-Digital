@@ -20,22 +20,22 @@ const projectTypes: ProjectType[] = [
   {
     id: 'onepager',
     name: 'Onepager',
-    priceLabel: 'ab CHF 390',
-    basePrice: 390,
+    priceLabel: 'ab CHF 290',
+    basePrice: 290,
     description: 'Eine kompakte Website für dein Angebot, Portfolio oder kleines Business.',
   },
   {
     id: 'landingpage',
     name: 'Landingpage',
-    priceLabel: 'ab CHF 490',
-    basePrice: 490,
+    priceLabel: 'ab CHF 350',
+    basePrice: 350,
     description: 'Für eine Kampagne, ein Produkt oder eine einzelne Dienstleistung.',
   },
   {
     id: 'website',
     name: 'Mehrseitige Website',
-    priceLabel: 'ab CHF 890',
-    basePrice: 890,
+    priceLabel: 'ab CHF 590',
+    basePrice: 590,
     description: 'Mehrere Seiten wie Home, Über uns, Leistungen, Projekte und Kontakt.',
   },
   {
@@ -48,13 +48,13 @@ const projectTypes: ProjectType[] = [
 ];
 
 const addOns: AddOn[] = [
-  { id: 'kontaktformular', name: 'Kontaktformular', price: 90 },
+  { id: 'kontaktformular', name: 'Kontaktformular', price: 60 },
   { id: 'maps', name: 'Google Maps Einbindung', price: 40 },
-  { id: 'seo', name: 'SEO-Basis', price: 120 },
-  { id: 'texte', name: 'Texte optimieren', price: 150 },
-  { id: 'bilder', name: 'Bilder optimieren', price: 90 },
-  { id: 'mehrsprachigkeit', name: 'Mehrsprachigkeit DE/EN', price: 220 },
-  { id: 'rechtliches', name: 'Rechtliche Seiten vorbereiten', price: 80 },
+  { id: 'seo', name: 'SEO-Basis', price: 80 },
+  { id: 'texte', name: 'Texte optimieren', price: 100 },
+  { id: 'bilder', name: 'Bilder optimieren', price: 60 },
+  { id: 'mehrsprachigkeit', name: 'Mehrsprachigkeit DE/EN', price: 160 },
+  { id: 'rechtliches', name: 'Rechtliche Seiten vorbereiten', price: 50 },
 ];
 
 const formatPrice = (price: number) => `CHF ${price.toLocaleString('de-CH')}`;
