@@ -2567,11 +2567,16 @@ body[data-page='kontakt'] .footer {
 
 /* ── ScrambleTitle ───────────────────────────────────────────── */
 .scramble-title {
-  font-size: clamp(2.8rem, 9vw, 7.5rem);
+  font-size: clamp(1.85rem, 9vw, 7.5rem);
   line-height: 0.92;
   letter-spacing: -0.04em;
   font-weight: 760;
   will-change: transform, opacity;
+}
+
+/* Prevent the static prefix line from soft-wrapping mid-phrase */
+.scramble-prefix {
+  white-space: nowrap;
 }
 
 .scramble-word {
@@ -2579,6 +2584,7 @@ body[data-page='kontakt'] .footer {
   display: inline-block;
   min-width: 6ch;
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 /* ── Skills Page – GSAP Edition ─────────────────────────────── */

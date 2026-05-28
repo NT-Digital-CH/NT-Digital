@@ -91,7 +91,11 @@ export function Home() {
         <div className="container">
           <div className="section-intro reveal">
             <p className="section-eyebrow">Portfolio</p>
-            <h2>Unsere Arbeit.</h2>
+            <h2>
+                Unsere
+                <br />
+                Arbeit.
+              </h2>
           </div>
 
           <div className="project-feature reveal">
@@ -125,7 +129,11 @@ export function Home() {
       <section className="tight">
         <div className="container">
           <div className="cta-strip reveal">
-            <h2>Bereit für deine neue Website?</h2>
+            <h2>
+                Bereit für deine
+                <br />
+                neue Website?
+              </h2>
             <a href="/kontakt" className="btn btn-primary">
               Jetzt anfragen →
             </a>
