@@ -4,16 +4,16 @@ const teamMembers = [
   {
     name: 'Jones Thala',
     img: '/jonesthala.png',
-    role: 'Co-Founder · Web Developer',
+
     bio: 'ICT-Fachmann im 2. Lehrjahr. Fokus auf sauberen Code, modernes Web-Design und Systeme die funktionieren. Code ist für mich kein Job - es ist Handwerk.',
-    github: 'https://github.com/NT-Digital-CH',
-    githubLabel: 'github.com/NT-Digital ↗',
+    github: 'https://github.com/jonesthala',
+    githubLabel: 'github.com/jonesthala ↗',
     linkedin: 'https://www.linkedin.com/in/jones-thala-0372a9335',
   },
   {
     name: 'Ilija Nikolic',
     img: '/ilijanikolic.jpg',
-    role: 'Co-Founder · Web Developer',
+  
     bio: 'ICT-Fachmann im 2. Lehrjahr. Gleiche Leidenschaft, gleiche Ziele - zusammen bauen wir Websites die überzeugen. Qualität ist kein Zufall, sondern Entscheidung.',
     github: 'https://github.com/nexpriv',
     githubLabel: 'github.com/nexpriv ↗',
