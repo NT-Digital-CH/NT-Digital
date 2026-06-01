@@ -42,73 +42,121 @@ export function Projects() {
       <section className="flush-top">
         <div className="container">
           <div className="projects-list">
-            <article className="project-item reveal">
-              <p className="project-item-eyebrow">01 / Webentwicklung · 2026</p>
+            <article className="project-item project-item-featured reveal">
+              <p className="project-item-eyebrow">01 / Band Website · 2026</p>
 
               <div className="project-item-thumb" aria-hidden="true">
-                <div className="project-thumb-mmac">
-                  <span>MMAC Center</span>
+                <div className="project-thumb-huafoo">
+                  <img src="/huafoo_ref.png" alt="" className="project-thumb-huafoo-img" loading="lazy" />
                 </div>
               </div>
 
               <div>
-                <p className="project-item-title">MMAC Center - Kampfschule Bachenbülach</p>
+                <p className="project-item-title">Hua Foo</p>
                 <p className="project-item-desc">
-                  Komplette Neugestaltung der Website für eine Kampfschule in Bachenbülach. One-Page Design mit
-                  Stundenplan, Preisliste, Team-Vorstellung, Google Maps und Kontaktformular. Vollständig responsiv, von
-                  Grund auf entwickelt.
+                  Moderne Website für die Coverband Hua Foo mit Bandvorstellung, Gigs, Musikbereich und direkter
+                  Buchungsanfrage. Energiegeladen, klar strukturiert und optimiert für Besucher, Veranstalter und Fans.
                 </p>
+
+                <ul className="project-highlights" aria-label="Projekt-Highlights">
+                  <li>Band & Musik sauber präsentiert</li>
+                  <li>Kommende Gigs sichtbar</li>
+                  <li>Kontakt und Buchung klar erreichbar</li>
+                  <li>Responsive Aufbau für Mobile und Desktop</li>
+                </ul>
+
                 <div className="project-item-footer">
-                  <span className="project-badge amber">In Verhandlung</span>
+                  <span className="project-badge violet">Live</span>
                   <div className="project-stack">
-                    <span className="stack-tag">HTML</span>
-                    <span className="stack-tag">CSS</span>
-                    <span className="stack-tag">JavaScript</span>
-                    <span className="stack-tag">Mobile-First</span>
+                    <span className="stack-tag">Band Website</span>
+                    <span className="stack-tag">Booking</span>
+                    <span className="stack-tag">Event / Musik</span>
+                    <span className="stack-tag">Responsive</span>
                   </div>
-                  <a
-                    href="https://www.jonesthala.ch/mmac.github.io/"
-                    className="project-link"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    Demo ansehen ↗
+                  <a href="https://huafoo.ch/" className="project-link" target="_blank" rel="noopener">
+                    Live ansehen ↗
                   </a>
                 </div>
               </div>
             </article>
 
             <article className="project-item reveal">
-              <p className="project-item-eyebrow">02 / Webentwicklung · 2026</p>
+              <p className="project-item-eyebrow">02 / Personal Portfolio · 2026</p>
 
-              <div className="project-item-thumb" aria-hidden="true">
-                <div className="project-thumb-drive77">
-                  <span>drive77</span>
+              <div className="project-item-thumb project-item-thumb-premium" aria-hidden="true">
+                <div className="project-thumb-jonesthala">
+                  <img src="/jonesthala_ref.png" alt="" className="project-thumb-jonesthala-img" loading="lazy" />
                 </div>
               </div>
 
               <div>
-                <p className="project-item-title">drive77 – Fahrschule Zürich</p>
+                <p className="project-item-title">Jones Thala</p>
                 <p className="project-item-desc">
-                  Komplettes Website-Redesign für eine Zürcher Fahrschule. Dark-Mode Motorsport-Design, klare
-                  Preisübersicht, vollständig responsiv. Gebaut mit React, Vite und TypeScript.
+                  Persönliche Portfolio-Website für Jones Thala, ICT-Lernender im 2. Lehrjahr. Die Website kombiniert
+                  einen Terminal-inspirierten Look mit klarer Struktur, Skills, Projekten, Kontaktbereich und
+                  interaktiven Details wie Command Palette und Easter Egg.
                 </p>
+
+                <ul className="project-highlights" aria-label="Projekt-Highlights">
+                  <li>Terminal-inspirierter Hero-Bereich</li>
+                  <li>Skills & Projekte übersichtlich dargestellt</li>
+                  <li>Kontaktbereich mit Social Links</li>
+                  <li>Interaktive Features wie Command Palette und Secret Code</li>
+                  <li>Mobile-optimierter Aufbau</li>
+                </ul>
+
                 <div className="project-item-footer">
-                  <span className="project-badge blue">Mockup</span>
+                  <span className="project-badge green">Live</span>
                   <div className="project-stack">
-                    <span className="stack-tag">React</span>
-                    <span className="stack-tag">TypeScript</span>
-                    <span className="stack-tag">Vite</span>
-                    <span className="stack-tag">Framer Motion</span>
-                    <span className="stack-tag">Mobile-First</span>
+                    <span className="stack-tag">Portfolio Website</span>
+                    <span className="stack-tag">Terminal UI</span>
+                    <span className="stack-tag">Personal Brand</span>
+                    <span className="stack-tag">Responsive</span>
+                    <span className="stack-tag">Vercel</span>
                   </div>
-                  <a
-                    href="https://drive77-mockup.vercel.app"
-                    className="project-link"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    Demo ansehen ↗
+                  <a href="https://www.jonesthala.ch" className="project-link" target="_blank" rel="noopener">
+                    Live ansehen ↗
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <article className="project-item reveal">
+              <p className="project-item-eyebrow">03 / Product Discovery Platform · 2026</p>
+
+              <div className="project-item-thumb project-item-thumb-premium project-item-thumb-marketplace" aria-hidden="true">
+                <div className="project-thumb-acfinds">
+                  <img src="/acfinds_ref.png" alt="" className="project-thumb-acfinds-img" loading="lazy" />
+                </div>
+              </div>
+
+              <div>
+                <p className="project-item-title">ACFinds</p>
+                <p className="project-item-desc">
+                  Curated Product-Discovery-Plattform für Fashion, Tech und Outfits. ACFinds bündelt Produkte, Brands,
+                  Seller und Outfit-Ideen in einer cleanen Oberfläche, damit Besucher schneller gute Finds entdecken und
+                  direkt zu passenden Quellen weitergeleitet werden.
+                </p>
+
+                <ul className="project-highlights" aria-label="Projekt-Highlights">
+                  <li>Übersichtliche Produkt- und Kategorie-Struktur</li>
+                  <li>Bereiche für Products, Brands, Favorites, Outfits und Sellers</li>
+                  <li>Direkte Weiterleitung zu Shops/Sellern</li>
+                  <li>Cleaner Aufbau mit Fokus auf schnelles Entdecken</li>
+                  <li>Mobile-optimierte Produktdarstellung</li>
+                </ul>
+
+                <div className="project-item-footer">
+                  <span className="project-badge rose">Live</span>
+                  <div className="project-stack">
+                    <span className="stack-tag">Product Discovery</span>
+                    <span className="stack-tag">Fashion & Tech</span>
+                    <span className="stack-tag">Curated Finds</span>
+                    <span className="stack-tag">Responsive</span>
+                    <span className="stack-tag">E-Commerce UI</span>
+                  </div>
+                  <a href="https://www.acfinds.store/" className="project-link" target="_blank" rel="noopener">
+                    Live ansehen ↗
                   </a>
                 </div>
               </div>

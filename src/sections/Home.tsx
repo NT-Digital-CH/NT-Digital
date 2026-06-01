@@ -99,21 +99,22 @@ export function Home() {
           </div>
 
           <div className="project-feature reveal">
-            <p className="project-feature-index">01 / Webentwicklung · 2026</p>
-            <h3 className="project-feature-title">MMAC Center</h3>
+            <p className="project-feature-index">01 / Band Website · 2026</p>
+            <h3 className="project-feature-title">Hua Foo</h3>
             <p className="project-feature-desc">
-              Komplette Website-Neuentwicklung für eine Kampfschule in Bachenbülach. One-Page Design mit Stundenplan,
-              Preisliste, Team-Vorstellung und Kontaktformular. Vollständig responsiv, von Grund auf entwickelt.
+              Moderne Website für die Coverband Hua Foo mit Bandvorstellung, Gigs, Musikbereich und direkter
+              Buchungsanfrage. Energiegeladen, klar strukturiert und optimiert für Besucher, Veranstalter und Fans.
             </p>
             <div className="project-feature-meta">
-              <span className="project-badge amber">In Verhandlung</span>
+              <span className="project-badge violet">Live</span>
               <div className="project-stack">
-                <span className="stack-tag">HTML</span>
-                <span className="stack-tag">CSS</span>
-                <span className="stack-tag">JavaScript</span>
+                <span className="stack-tag">Band Website</span>
+                <span className="stack-tag">Booking</span>
+                <span className="stack-tag">Event / Musik</span>
+                <span className="stack-tag">Responsive</span>
               </div>
-              <a href="https://www.jonesthala.ch/mmac.github.io/" className="project-link" target="_blank" rel="noopener">
-                Demo ansehen ↗
+              <a href="https://huafoo.ch/" className="project-link" target="_blank" rel="noopener">
+                Live ansehen ↗
               </a>
             </div>
           </div>
