@@ -78,6 +78,42 @@ export function Projects() {
               </div>
             </article>
 
+            <article className="project-item reveal">
+              <p className="project-item-eyebrow">02 / Webentwicklung · 2026</p>
+
+              <div className="project-item-thumb" aria-hidden="true">
+                <div className="project-thumb-drive77">
+                  <span>drive77</span>
+                </div>
+              </div>
+
+              <div>
+                <p className="project-item-title">drive77 – Fahrschule Zürich</p>
+                <p className="project-item-desc">
+                  Komplettes Website-Redesign für eine Zürcher Fahrschule. Dark-Mode Motorsport-Design, klare
+                  Preisübersicht, vollständig responsiv. Gebaut mit React, Vite und TypeScript.
+                </p>
+                <div className="project-item-footer">
+                  <span className="project-badge blue">Mockup</span>
+                  <div className="project-stack">
+                    <span className="stack-tag">React</span>
+                    <span className="stack-tag">TypeScript</span>
+                    <span className="stack-tag">Vite</span>
+                    <span className="stack-tag">Framer Motion</span>
+                    <span className="stack-tag">Mobile-First</span>
+                  </div>
+                  <a
+                    href="https://drive77-mockup.vercel.app"
+                    className="project-link"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    Demo ansehen ↗
+                  </a>
+                </div>
+              </div>
+            </article>
+
             <div className="project-next reveal">
               <p className="project-next-label">Nächstes Projekt</p>
               <p className="project-next-text">
