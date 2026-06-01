@@ -94,7 +94,6 @@ export function About() {
                 <div className="team-member-content">
                   <div className="team-member-head">
                     <span className="team-name">{member.name}</span>
-                    <span className="team-role">{member.role}</span>
                   </div>
                   <p className="team-bio">{member.bio}</p>
                   <p className="team-skills-inline" aria-label="Technologien">
