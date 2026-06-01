@@ -19,6 +19,8 @@ type FloatLayerProps = {
   floatX?: number;
   floatY?: number;
   floatRotate?: number;
+  floatRotateX?: number;
+  floatRotateY?: number;
   opacity?: number;
   rotate?: number;
   depthTransform?: string;
@@ -47,6 +49,8 @@ function FloatLayer({
   floatX = 12,
   floatY = -14,
   floatRotate = 1,
+  floatRotateX = 0,
+  floatRotateY = 0,
   opacity = 1,
   rotate = 0,
   depthTransform,
@@ -75,6 +79,8 @@ function FloatLayer({
                 x: [0, floatX, 0],
                 y: [0, floatY, 0],
                 rotate: [0, floatRotate, 0],
+                rotateX: [0, floatRotateX, 0],
+                rotateY: [0, floatRotateY, 0],
               }
         }
         transition={{ ...calmFloat, duration }}
@@ -197,19 +203,43 @@ function GhostMobilePanel({ isMobile = false }: { isMobile?: boolean }) {
     <div
       style={{
         position: 'absolute',
-        right: isMobile ? -42 : 22,
-        bottom: isMobile ? -20 : -48,
-        width: isMobile ? 126 : 168,
-        height: isMobile ? 170 : 224,
+        right: isMobile ? -38 : -4,
+        bottom: isMobile ? -14 : 18,
+        width: isMobile ? 122 : 166,
+        height: isMobile ? 164 : 218,
         borderRadius: 9,
-        border: '1px solid rgba(138, 132, 255, 0.42)',
-        background: 'linear-gradient(145deg, rgba(17, 24, 42, 0.48), rgba(7, 10, 18, 0.14))',
+        border: '1px solid rgba(150, 142, 255, 0.46)',
+        background:
+          'radial-gradient(circle at 26% 12%, rgba(78,107,255,0.09), transparent 38%), linear-gradient(145deg, rgba(17, 24, 42, 0.54), rgba(7, 10, 18, 0.16))',
         boxShadow:
-          'inset 0 1px 0 rgba(255,255,255,0.06), 0 18px 42px rgba(0,0,0,0.16), 0 0 28px rgba(78,107,255,0.07)',
-        transform: isMobile ? 'translateZ(30px)' : 'translateZ(72px) rotateY(-4deg)',
+          'inset 0 1px 0 rgba(255,255,255,0.08), inset -1px -1px 0 rgba(78,107,255,0.07), 0 24px 54px rgba(0,0,0,0.24), 0 0 34px rgba(78,107,255,0.1)',
+        transform: isMobile ? 'translateZ(30px)' : 'translateZ(132px) rotateX(4deg) rotateY(-16deg) rotateZ(2.5deg) scale(1.01)',
         transformStyle: 'preserve-3d',
+        backdropFilter: 'blur(0.6px)',
+        WebkitBackdropFilter: 'blur(0.6px)',
       }}
     >
+      <div
+        style={{
+          position: 'absolute',
+          inset: '8px -6px -10px 8px',
+          borderRadius: 12,
+          background: 'rgba(0,0,0,0.2)',
+          filter: 'blur(10px)',
+          transform: 'translateZ(-34px)',
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          left: 1,
+          top: 1,
+          width: '58%',
+          height: 1,
+          background: 'linear-gradient(90deg, rgba(178,168,255,0.36), transparent)',
+          transform: 'translateZ(18px)',
+        }}
+      />
       <div style={{ padding: isMobile ? '13px 13px 0' : '15px 16px 0' }}>
         <BrowserDots compact />
         <div style={{ marginTop: isMobile ? 19 : 24 }}>
@@ -224,8 +254,8 @@ function GhostMobilePanel({ isMobile = false }: { isMobile?: boolean }) {
             height: isMobile ? 13 : 15,
             marginTop: isMobile ? 17 : 22,
             borderRadius: 999,
-            border: '1px solid rgba(128, 123, 255, 0.28)',
-            background: 'rgba(51, 92, 255, 0.035)',
+            border: '1px solid rgba(150, 142, 255, 0.34)',
+            background: 'rgba(51, 92, 255, 0.045)',
           }}
         />
       </div>
@@ -265,14 +295,16 @@ function GhostBrowserPanel({ isMobile }: { isMobile: boolean }) {
       floatX={18}
       floatY={-22}
       floatRotate={1.2}
+      floatRotateX={0.7}
+      floatRotateY={-1.3}
       opacity={1}
-      rotate={-4.1}
-      depthTransform="perspective(1200px) rotateX(3deg) rotateY(-10deg) translateZ(38px)"
+      rotate={-4.3}
+      depthTransform="perspective(1250px) rotateX(5deg) rotateY(-14deg) translateZ(32px) scale(1.015)"
       style={{
-        left: '52.2vw',
-        top: '48.4vh',
-        width: 'min(780px, 47vw)',
-        height: 'min(438px, 40vh)',
+        left: '51.8vw',
+        top: '48.8vh',
+        width: 'min(790px, 47.5vw)',
+        height: 'min(444px, 40.5vh)',
         zIndex: 4,
       }}
     >
@@ -288,15 +320,64 @@ function BrowserPanelFrame({ isMobile = false }: { isMobile?: boolean }) {
         position: 'absolute',
         inset: 0,
         borderRadius: 14,
-        border: '1px solid rgba(138, 132, 255, 0.5)',
+        border: '1px solid rgba(146, 139, 255, 0.48)',
         background:
-          'linear-gradient(145deg, rgba(17, 24, 42, 0.5), rgba(8, 11, 20, 0.15) 58%, rgba(7, 10, 18, 0.065))',
+          'radial-gradient(circle at 24% 18%, rgba(78,107,255,0.085), transparent 36%), radial-gradient(ellipse at 78% 72%, rgba(7,10,18,0.26), transparent 58%), linear-gradient(145deg, rgba(17, 24, 42, 0.52), rgba(8, 11, 20, 0.16) 58%, rgba(7, 10, 18, 0.075))',
         boxShadow:
-          'inset 0 1px 0 rgba(255,255,255,0.07), inset -1px -1px 0 rgba(78,107,255,0.075), 0 0 56px rgba(78,107,255,0.135), 0 32px 82px rgba(0,0,0,0.28)',
+          'inset 0 1px 0 rgba(255,255,255,0.08), inset 1px 0 0 rgba(165,107,255,0.085), inset -1px -1px 0 rgba(4,6,14,0.28), 0 0 58px rgba(78,107,255,0.13), 0 34px 88px rgba(0,0,0,0.3)',
         overflow: 'visible',
         transformStyle: 'preserve-3d',
+        backdropFilter: 'blur(0.45px)',
+        WebkitBackdropFilter: 'blur(0.45px)',
       }}
     >
+      <div
+        style={{
+          position: 'absolute',
+          inset: '18px -18px -24px 28px',
+          borderRadius: 18,
+          background:
+            'linear-gradient(135deg, rgba(0,0,0,0.08), rgba(0,0,0,0.28)), radial-gradient(ellipse at 78% 68%, rgba(78,107,255,0.08), transparent 58%)',
+          filter: 'blur(14px)',
+          transform: 'translateZ(-58px)',
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          left: 1,
+          top: 1,
+          right: '28%',
+          height: 1,
+          borderRadius: 999,
+          background: 'linear-gradient(90deg, rgba(172,161,255,0.42), rgba(78,107,255,0.16), transparent)',
+          transform: 'translateZ(42px)',
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          top: 1,
+          left: 1,
+          bottom: '22%',
+          width: 1,
+          borderRadius: 999,
+          background: 'linear-gradient(180deg, rgba(172,161,255,0.34), rgba(78,107,255,0.12), transparent)',
+          transform: 'translateZ(40px)',
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          right: -1,
+          top: 0,
+          bottom: 0,
+          width: '22%',
+          borderRadius: '0 14px 14px 0',
+          background: 'linear-gradient(90deg, transparent, rgba(3,5,12,0.18))',
+          transform: 'translateZ(4px)',
+        }}
+      />
       <div
         style={{
           height: isMobile ? 34 : 44,
@@ -618,33 +699,72 @@ function BottomRightPill({ isMobile }: { isMobile: boolean }) {
   return (
     <FloatLayer
       delay={0.54}
-      duration={20}
-      floatX={18}
-      floatY={-14}
-      floatRotate={0.8}
-      opacity={0.74}
+      duration={23}
+      floatX={20}
+      floatY={-16}
+      floatRotate={0.9}
+      floatRotateX={0.45}
+      floatRotateY={-0.75}
+      opacity={0.82}
       rotate={-12}
-      depthTransform="perspective(1100px) rotateX(4deg) rotateY(-7deg) translateZ(96px)"
+      depthTransform="perspective(1100px) rotateX(7deg) rotateY(-10deg) translateZ(160px) scale(1.02)"
       style={{
-        right: '3.2vw',
-        bottom: '5.2vh',
-        width: 470,
-        height: 92,
-        zIndex: 6,
+        right: '2.8vw',
+        bottom: '4.9vh',
+        width: 482,
+        height: 94,
+        zIndex: 8,
       }}
     >
+      <div
+        style={{
+          position: 'absolute',
+          left: '7%',
+          right: '4%',
+          bottom: -14,
+          height: 38,
+          borderRadius: 999,
+          background: 'rgba(0,0,0,0.25)',
+          filter: 'blur(16px)',
+          transform: 'translateZ(-50px)',
+        }}
+      />
       <div
         style={{
           width: '100%',
           height: '100%',
           borderRadius: 999,
-        border: '1px solid rgba(255, 107, 181, 0.4)',
-        background:
-            'linear-gradient(90deg, rgba(255,107,181,0.28), rgba(193,91,255,0.17) 42%, rgba(78,107,255,0.07) 74%, rgba(8,11,20,0.02))',
+          border: '1px solid rgba(255, 118, 191, 0.46)',
+          background:
+            'radial-gradient(ellipse at 23% 35%, rgba(255,107,181,0.2), transparent 46%), linear-gradient(92deg, rgba(255,107,181,0.3), rgba(193,91,255,0.2) 42%, rgba(78,107,255,0.08) 74%, rgba(8,11,20,0.025))',
           boxShadow:
-            'inset 0 1px 0 rgba(255,255,255,0.07), 0 0 44px rgba(255,107,181,0.17), 0 26px 54px rgba(0,0,0,0.22)',
+            'inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -1px 0 rgba(78,107,255,0.08), 0 0 52px rgba(255,107,181,0.21), 0 28px 60px rgba(0,0,0,0.28)',
+          position: 'relative',
+          overflow: 'hidden',
         }}
-      />
+      >
+        <span
+          style={{
+            position: 'absolute',
+            left: '9%',
+            top: 10,
+            width: '58%',
+            height: 1,
+            borderRadius: 999,
+            background: 'linear-gradient(90deg, rgba(255,216,238,0.26), rgba(255,107,181,0.12), transparent)',
+          }}
+        />
+        <span
+          style={{
+            position: 'absolute',
+            right: 0,
+            top: 0,
+            bottom: 0,
+            width: '34%',
+            background: 'linear-gradient(90deg, transparent, rgba(5,7,16,0.16))',
+          }}
+        />
+      </div>
     </FloatLayer>
   );
 }
