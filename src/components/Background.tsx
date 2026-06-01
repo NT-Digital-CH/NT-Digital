@@ -203,10 +203,10 @@ function GhostMobilePanel({ isMobile = false }: { isMobile?: boolean }) {
     <div
       style={{
         position: 'absolute',
-        right: isMobile ? -38 : -4,
-        bottom: isMobile ? -14 : 18,
-        width: isMobile ? 122 : 166,
-        height: isMobile ? 164 : 218,
+        right: isMobile ? -14 : -4,
+        bottom: isMobile ? 14 : 18,
+        width: isMobile ? 96 : 166,
+        height: isMobile ? 128 : 218,
         borderRadius: 9,
         border: '1px solid rgba(150, 142, 255, 0.46)',
         background:
@@ -269,17 +269,18 @@ function GhostBrowserPanel({ isMobile }: { isMobile: boolean }) {
       <FloatLayer
         delay={0.24}
         duration={24}
-        floatX={8}
-        floatY={-10}
-        floatRotate={0.8}
-        opacity={0.42}
-        rotate={-4}
-        depthTransform="perspective(1000px) rotateX(4deg) rotateY(-12deg)"
+        floatX={5}
+        floatY={-7}
+        floatRotate={0.45}
+        opacity={0.24}
+        rotate={-3}
+        depthTransform="perspective(900px) rotateX(3deg) rotateY(-8deg)"
         style={{
-          right: '-54vw',
-          bottom: '9vh',
-          width: '92vw',
-          height: '260px',
+          right: 'max(-66px, -14vw)',
+          bottom: 'clamp(48px, 10vh, 96px)',
+          width: 'min(320px, 85vw)',
+          maxWidth: '85vw',
+          height: 'clamp(210px, 34vh, 240px)',
           zIndex: 3,
         }}
       >
