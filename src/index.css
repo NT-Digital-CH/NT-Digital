@@ -62,6 +62,255 @@ img   { max-width: 100%; display: block; }
 a     { color: inherit; text-decoration: none; }
 ul, ol{ list-style: none; }
 
+.app-shell {
+  position: relative;
+  min-height: 100svh;
+}
+
+.app-content {
+  position: relative;
+  z-index: 1;
+}
+
+.site-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: #161b2a;
+}
+
+.site-background-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 42% 32% at 12% 8%, oklch(56% 0.2 268 / 0.035), transparent 72%),
+    radial-gradient(ellipse 34% 28% at 92% 32%, oklch(62% 0.15 302 / 0.032), transparent 70%),
+    radial-gradient(ellipse 34% 26% at 78% 92%, oklch(68% 0.11 210 / 0.026), transparent 74%);
+  filter: blur(28px);
+}
+
+.site-background-shapes {
+  position: absolute;
+  inset: 0;
+}
+
+.background-ambient {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.background-ambient-float {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.background-orb .background-ambient-float {
+  border: 1px solid oklch(95% 0.008 268 / 0.14);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 35% 30%, oklch(95% 0.008 268 / 0.075), transparent 34%),
+    linear-gradient(145deg, oklch(95% 0.008 268 / 0.038), transparent 64%);
+  box-shadow: inset 0 0 28px oklch(95% 0.008 268 / 0.038);
+}
+
+.background-orb-large {
+  width: min(280px, 34vw);
+  aspect-ratio: 1;
+  right: -112px;
+  top: 36%;
+}
+
+.background-orb-small {
+  width: 96px;
+  aspect-ratio: 1;
+  left: 7%;
+  bottom: 10%;
+}
+
+.background-orb-large .background-ambient-float {
+  border-color: oklch(95% 0.008 268 / 0.12);
+  background:
+    radial-gradient(circle at 34% 30%, oklch(95% 0.008 268 / 0.055), transparent 34%),
+    linear-gradient(145deg, oklch(95% 0.008 268 / 0.028), transparent 66%);
+  box-shadow: inset 0 0 26px oklch(95% 0.008 268 / 0.03);
+}
+
+.background-orb-small .background-ambient-float {
+  border-color: oklch(95% 0.008 268 / 0.16);
+  box-shadow: inset 0 0 24px oklch(95% 0.008 268 / 0.045);
+}
+
+.background-line {
+  height: 1px;
+  width: min(340px, 34vw);
+  transform-origin: center;
+}
+
+.background-line .background-ambient-float {
+  background: linear-gradient(90deg, transparent, oklch(95% 0.008 268 / 0.16), transparent);
+  filter: none;
+}
+
+.background-line-one {
+  right: 4%;
+  top: 18%;
+}
+
+.background-line-accent {
+  left: 6%;
+  top: 9%;
+  width: 180px;
+}
+
+.background-line-accent .background-ambient-float {
+  background: linear-gradient(90deg, transparent, oklch(72% 0.12 210 / 0.16), transparent);
+}
+
+.background-panel {
+  width: min(245px, 24vw);
+  height: 116px;
+}
+
+.background-panel .background-ambient-float {
+  border: 1px solid oklch(95% 0.008 268 / 0.14);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, oklch(95% 0.008 268 / 0.06), oklch(95% 0.008 268 / 0.018)),
+    radial-gradient(circle at 18% 18%, oklch(95% 0.008 268 / 0.08), transparent 32%);
+  box-shadow: 0 14px 36px oklch(0% 0 0 / 0.14), inset 0 1px 0 oklch(95% 0.008 268 / 0.1);
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
+}
+
+.background-panel-one {
+  right: 17%;
+  bottom: 12%;
+}
+
+.background-shape {
+  position: absolute;
+  will-change: transform, opacity;
+}
+
+.background-shape-float {
+  position: relative;
+  width: min(var(--shape-width), 82vw);
+  height: var(--shape-height);
+  will-change: transform;
+}
+
+.background-shape-surface {
+  position: absolute;
+  inset: 0;
+  border: 2px solid oklch(95% 0.008 268 / 0.2);
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--shape-gradient), transparent);
+  box-shadow: 0 8px 26px 0 oklch(95% 0.008 268 / 0.12);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+}
+
+.background-shape-surface::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at 50% 50%, oklch(95% 0.008 268 / 0.22), transparent 70%);
+}
+
+.background-shape-one .background-shape-surface {
+  border-color: oklch(95% 0.008 268 / 0.18);
+  box-shadow: 0 8px 24px 0 oklch(95% 0.008 268 / 0.1);
+}
+
+.background-shape-two .background-shape-surface {
+  border-color: oklch(95% 0.008 268 / 0.24);
+  box-shadow: 0 10px 30px 0 oklch(95% 0.008 268 / 0.14);
+}
+
+.background-shape-three .background-shape-surface {
+  border-color: oklch(95% 0.008 268 / 0.17);
+  box-shadow: 0 8px 24px 0 oklch(95% 0.008 268 / 0.09);
+}
+
+.background-shape-one {
+  left: -12%;
+  top: 16%;
+}
+
+.background-shape-two {
+  right: 11%;
+  top: 14%;
+}
+
+.background-shape-three {
+  right: -16%;
+  bottom: 5%;
+}
+
+.site-background-vignette {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--bg), transparent 42%, oklch(15.5% 0.03 268 / 0.65));
+}
+
+@media (min-width: 768px) {
+  .background-shape-one {
+    left: -8%;
+    top: 18%;
+  }
+
+  .background-shape-two {
+    right: 12%;
+    top: 14%;
+  }
+
+  .background-shape-three {
+    right: -12%;
+    bottom: 5%;
+  }
+}
+
+@media (max-width: 767px) {
+  .background-shape-mobile-hidden {
+    display: none;
+  }
+
+  .background-orb-large {
+    width: 170px;
+    right: -102px;
+    top: 35%;
+  }
+
+  .background-orb-small {
+    width: 72px;
+    left: -22px;
+    bottom: 14%;
+  }
+
+  .background-shape-one {
+    left: -34%;
+    top: 13%;
+  }
+
+  .background-shape-two {
+    right: -18%;
+    top: 18%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .background-shape,
+  .background-shape-float,
+  .background-ambient {
+    will-change: auto;
+  }
+}
+
 /* ── Scroll Progress ─────────────────────────────────────────── */
 #scroll-progress {
   position: fixed;

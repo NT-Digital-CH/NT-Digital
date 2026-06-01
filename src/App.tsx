@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { Background } from './components/Background';
 import { Footer } from './components/Footer';
 import { Navbar } from './components/Navbar';
 import { ScrollProgress } from './components/ScrollProgress';
@@ -244,11 +245,14 @@ export function App() {
   }, [page]);
 
   return (
-    <>
+    <div className="app-shell">
+      <Background />
       <ScrollProgress progress={progress} />
       <Navbar currentPage={page} isScrolled={isScrolled} />
-      <Page />
-      <Footer />
-    </>
+      <div className="app-content">
+        <Page />
+        <Footer />
+      </div>
+    </div>
   );
 }
