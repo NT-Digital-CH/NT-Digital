@@ -5,7 +5,7 @@ const teamMembers = [
     name: 'Jones Thala',
     img: '/jonesthala.png',
 
-    bio: 'ICT-Fachmann im 2. Lehrjahr. Fokus auf sauberen Code, modernes Web-Design und Systeme die funktionieren. Code ist für mich kein Job - es ist Handwerk.',
+    bio: 'ICT-Fachmann im 2. Lehrjahr. Fokus auf sauberen Code, modernes Webdesign und Systeme die funktionieren. Code ist für mich kein Job - es ist Handwerk.',
     github: 'https://github.com/jonesthala',
     githubLabel: 'github.com/jonesthala ↗',
     linkedin: 'https://www.linkedin.com/in/jones-thala-0372a9335',
@@ -77,7 +77,8 @@ export function About() {
             />
             <p className="lead reveal reveal-delay-2">
               Zwei Lernende ICT-Fachmänner aus der Schweiz. NT Digital ist unser gemeinsames Vorhaben: professionelle
-              Web-Lösungen für KMUs, die sonst keine grosse Agentur bezahlen könnten.
+              Web-Lösungen für lokale Unternehmen, die eine moderne Firmenwebsite brauchen, aber keine grosse Agentur
+              bezahlen möchten.
             </p>
           </div>
         </div>
@@ -89,7 +90,14 @@ export function About() {
             {teamMembers.map((member, index) => (
               <article className={`team-member reveal ${index === 1 ? 'reveal-delay-1' : ''}`} key={member.name}>
                 <div className="team-member-img-wrap">
-                  <img src={member.img} alt={member.name} className="team-member-img" width={200} height={200} />
+                  <img
+                    src={member.img}
+                    alt={`Portrait von ${member.name}`}
+                    className="team-member-img"
+                    width={200}
+                    height={200}
+                    loading="lazy"
+                  />
                 </div>
                 <div className="team-member-content">
                   <div className="team-member-head">

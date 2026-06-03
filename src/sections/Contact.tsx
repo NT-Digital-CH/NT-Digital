@@ -290,9 +290,9 @@ export function Contact() {
                   className="hero-title"
                 />
                 <p className="lead reveal reveal-delay-2">
-                  Kein langes Hin und Her.
+                  Website erstellen lassen, Redesign planen oder Landingpage anfragen?
                   <br />
-                  Schreib uns direkt - wir melden uns schnell.
+                  Schreib uns direkt - wir melden uns schnell und ehrlich.
                 </p>
               </div>
 
@@ -463,7 +463,7 @@ export function Contact() {
                 an und melden uns ehrlich mit dem nächsten sinnvollen Schritt.
               </p>
             </div>
-            <Button className="contact-next-cta-button" role="button" tabIndex={0} onClick={scrollToForm}>
+            <Button href="#kontaktformular" className="contact-next-cta-button" onClick={scrollToForm}>
               Unverbindlich anfragen
             </Button>
           </div>

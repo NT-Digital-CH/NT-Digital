@@ -31,9 +31,9 @@ export function Projects() {
               className="hero-title"
             />
             <p className="lead reveal reveal-delay-2">
-              Jede Website ist ein Handwerk.
+              Jede Website ist ein Handwerk - von der ersten Struktur bis zum Launch.
               <br />
-              Hier siehst du, wie wir arbeiten.
+              Hier siehst du, wie wir digitale Lösungen für echte Anfragen und klare Nutzerwege bauen.
             </p>
           </div>
         </div>
@@ -182,7 +182,7 @@ export function Projects() {
           <div className="section-intro reveal">
             <p className="section-eyebrow">Wie wir arbeiten</p>
             <h2>Unser Prozess.</h2>
-            <p>Transparent, direkt, ohne unnötigen Overhead.</p>
+            <p>Transparent, direkt und passend für kleine Unternehmen, die ihre Website erstellen lassen möchten.</p>
           </div>
 
           <div className="process-list">

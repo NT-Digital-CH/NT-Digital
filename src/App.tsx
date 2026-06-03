@@ -1,75 +1,86 @@
-import { useEffect, useMemo, useState } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useState, type ComponentType } from 'react';
 import { Background } from './components/Background';
 import { Footer } from './components/Footer';
 import { Navbar } from './components/Navbar';
 import { ScrollProgress } from './components/ScrollProgress';
-import { About } from './sections/About';
-import { Contact } from './sections/Contact';
-import { Datenschutz } from './sections/Datenschutz';
+import {
+  getPageSeo,
+  getStructuredData,
+  pageFromPath,
+  pathForPage,
+  siteConfig,
+  type PageKey,
+} from './config/seo';
 import { Home } from './sections/Home';
-import { Impressum } from './sections/Impressum';
-import { Prices } from './sections/Prices';
-import { Projects } from './sections/Projects';
-import { Skills } from './sections/Skills';
 
-type PageKey = 'home' | 'about' | 'skills' | 'projekte' | 'preise' | 'kontakt' | 'impressum' | 'datenschutz';
+const About = lazy(() => import('./sections/About').then(({ About }) => ({ default: About })));
+const Contact = lazy(() => import('./sections/Contact').then(({ Contact }) => ({ default: Contact })));
+const Datenschutz = lazy(() => import('./sections/Datenschutz').then(({ Datenschutz }) => ({ default: Datenschutz })));
+const Impressum = lazy(() => import('./sections/Impressum').then(({ Impressum }) => ({ default: Impressum })));
+const Prices = lazy(() => import('./sections/Prices').then(({ Prices }) => ({ default: Prices })));
+const Projects = lazy(() => import('./sections/Projects').then(({ Projects }) => ({ default: Projects })));
+const Skills = lazy(() => import('./sections/Skills').then(({ Skills }) => ({ default: Skills })));
 
-const pageMeta: Record<PageKey, { title: string; description: string }> = {
-  home: {
-    title: 'NT Digital - Wir bauen Websites die auffallen',
-    description:
-      'NT Digital - Moderne Websites von zwei ICT-Lernenden aus der Schweiz. Sauber gebaut, mobilfreundlich, auf den Punkt.',
-  },
-  about: {
-    title: 'Über uns - NT Digital',
-    description:
-      'NT Digital - Zwei ICT-Lernende aus der Schweiz. Jones Thala & Nikolic bauen Websites mit Leidenschaft.',
-  },
-  skills: {
-    title: 'Was wir können - NT Digital',
-    description:
-      'NT Digital - Was wir können. Frontend-Handwerk live demonstriert: CSS Animationen, Micro-Interactions, Glassmorphism, Responsive Design, Scroll-Animationen und Typografie.',
-  },
-  projekte: {
-    title: 'Projekte - NT Digital',
-    description:
-      'NT Digital Projekte - MMAC Center Kampfschule Bachenbülach und weitere Webprojekte von Jones Thala & Nikolic.',
-  },
-  preise: {
-    title: 'Preise - NT Digital',
-    description: 'NT Digital Preise - Grobe Projektpreise für kleine Websites mit interaktivem Preis-Konfigurator.',
-  },
-  kontakt: {
-    title: 'Kontakt - NT Digital',
-    description: 'NT Digital - Kontakt. Schreib uns direkt, wir melden uns schnell.',
-  },
-  impressum: {
-    title: 'Impressum - NT Digital',
-    description: 'Impressum von NT Digital mit Betreiberangaben und Kontaktadresse.',
-  },
-  datenschutz: {
-    title: 'Datenschutz - NT Digital',
-    description: 'Datenschutzerklärung von NT Digital zur Bearbeitung von Personendaten.',
-  },
-};
+function setMeta(selector: string, attribute: 'name' | 'property', key: string, content: string) {
+  let element = document.querySelector<HTMLMetaElement>(selector);
 
-function pageFromPath(pathname: string): PageKey {
-  const normalized = pathname.replace(/\/$/, '');
+  if (!element) {
+    element = document.createElement('meta');
+    element.setAttribute(attribute, key);
+    document.head.appendChild(element);
+  }
 
-  if (normalized === '' || normalized === '/index.html') return 'home';
-  if (normalized === '/about' || normalized === '/about.html') return 'about';
-  if (normalized === '/skills' || normalized === '/skills.html') return 'skills';
-  if (normalized === '/projekte' || normalized === '/projekte.html') return 'projekte';
-  if (normalized === '/preise' || normalized === '/preise.html') return 'preise';
-  if (normalized === '/kontakt' || normalized === '/kontakt.html') return 'kontakt';
-  if (normalized === '/impressum' || normalized === '/impressum.html') return 'impressum';
-  if (normalized === '/datenschutz' || normalized === '/datenschutz.html') return 'datenschutz';
-
-  return 'home';
+  element.content = content;
 }
 
-function pathForPage(page: PageKey) {
-  return page === 'home' ? '/' : `/${page}`;
+function setCanonical(href: string) {
+  let element = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+
+  if (!element) {
+    element = document.createElement('link');
+    element.rel = 'canonical';
+    document.head.appendChild(element);
+  }
+
+  element.href = href;
+}
+
+function setStructuredData(page: PageKey) {
+  let element = document.querySelector<HTMLScriptElement>('script[data-schema="nt-digital"]');
+
+  if (!element) {
+    element = document.createElement('script');
+    element.type = 'application/ld+json';
+    element.dataset.schema = 'nt-digital';
+    document.head.appendChild(element);
+  }
+
+  element.textContent = JSON.stringify(getStructuredData(page));
+}
+
+function applySeo(page: PageKey) {
+  const seo = getPageSeo(page);
+
+  document.documentElement.lang = siteConfig.language;
+  document.title = seo.title;
+
+  setMeta('meta[name="description"]', 'name', 'description', seo.description);
+  setCanonical(seo.canonical);
+
+  setMeta('meta[property="og:title"]', 'property', 'og:title', seo.title);
+  setMeta('meta[property="og:description"]', 'property', 'og:description', seo.description);
+  setMeta('meta[property="og:type"]', 'property', 'og:type', 'website');
+  setMeta('meta[property="og:url"]', 'property', 'og:url', seo.canonical);
+  setMeta('meta[property="og:image"]', 'property', 'og:image', seo.image);
+  setMeta('meta[property="og:site_name"]', 'property', 'og:site_name', siteConfig.siteName);
+  setMeta('meta[property="og:locale"]', 'property', 'og:locale', siteConfig.locale);
+
+  setMeta('meta[name="twitter:card"]', 'name', 'twitter:card', 'summary_large_image');
+  setMeta('meta[name="twitter:title"]', 'name', 'twitter:title', seo.title);
+  setMeta('meta[name="twitter:description"]', 'name', 'twitter:description', seo.description);
+  setMeta('meta[name="twitter:image"]', 'name', 'twitter:image', seo.image);
+
+  setStructuredData(page);
 }
 
 function useRoute() {
@@ -140,20 +151,14 @@ function useScrollUi() {
   return { progress, isScrolled };
 }
 
-function usePageEffects(page: PageKey) {
+function useSeoEffects(page: PageKey) {
   useEffect(() => {
     document.body.dataset.page = page;
-    document.title = pageMeta[page].title;
-
-    let description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
-    if (!description) {
-      description = document.createElement('meta');
-      description.name = 'description';
-      document.head.appendChild(description);
-    }
-    description.content = pageMeta[page].description;
+    applySeo(page);
   }, [page]);
+}
 
+function useRevealEffects(page: PageKey) {
   useEffect(() => {
     const revealTargets = document.querySelectorAll('.reveal');
     const observers: IntersectionObserver[] = [];
@@ -217,10 +222,26 @@ function usePageEffects(page: PageKey) {
 
 }
 
+type PageContentProps = {
+  page: PageKey;
+  Page: ComponentType;
+};
+
+function PageContent({ page, Page }: PageContentProps) {
+  useRevealEffects(page);
+
+  return (
+    <>
+      <Page />
+      <Footer />
+    </>
+  );
+}
+
 export function App() {
   const page = useRoute();
   const { progress, isScrolled } = useScrollUi();
-  usePageEffects(page);
+  useSeoEffects(page);
 
   const Page = useMemo(() => {
     switch (page) {
@@ -250,8 +271,9 @@ export function App() {
       <ScrollProgress progress={progress} />
       <Navbar currentPage={page} isScrolled={isScrolled} />
       <div className="app-content">
-        <Page />
-        <Footer />
+        <Suspense fallback={null}>
+          <PageContent page={page} Page={Page} />
+        </Suspense>
       </div>
     </div>
   );
