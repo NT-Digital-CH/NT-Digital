@@ -5,7 +5,7 @@ export function Footer() {
     <footer className="footer">
       <div className="container">
         <div className="footer-inner">
-          <a href="/" className="footer-logo">
+          <a href="/" className="footer-logo" aria-label="NT Digital - Startseite">
             <Logo />
           </a>
           <div className="footer-copy">

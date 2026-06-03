@@ -4,7 +4,9 @@ import { inject } from '@vercel/analytics';
 import { App } from './App';
 import './index.css';
 
-inject();
+if (!['localhost', '127.0.0.1'].includes(window.location.hostname)) {
+  inject();
+}
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

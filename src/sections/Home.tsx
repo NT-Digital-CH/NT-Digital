@@ -4,17 +4,17 @@ const services = [
   {
     num: '01',
     name: 'Website-Entwicklung',
-    desc: 'Moderne, schnelle Websites von Grund auf. HTML, CSS, JavaScript - kein Page-Builder, echte Handarbeit die sich im Code zeigt.',
+    desc: 'Moderne, schnelle Websites von Grund auf. Für lokale Unternehmen, die online professionell wirken und mehr Anfragen erhalten wollen.',
   },
   {
     num: '02',
     name: 'Responsive Design',
-    desc: 'Jede Website sieht auf dem Handy genauso gut aus wie am Desktop. Mobile-First ist für uns Standard, nicht Option.',
+    desc: 'Jede Website sieht auf dem Handy genauso gut aus wie am Desktop. Mobile-First ist für uns Standard, weil viele Kunden zuerst mobil suchen.',
   },
   {
     num: '03',
-    name: 'Individuelle Lösungen',
-    desc: 'Kein Template. Jede Website wird speziell für den Kunden entwickelt - Design, Inhalt, Struktur. Alles nach Mass.',
+    name: 'Redesigns & Landingpages',
+    desc: 'Ob moderne Firmenwebsite, Website Redesign oder Landingpage: Struktur, Inhalt und Umsetzung passen wir sauber an dein Angebot an.',
   },
 ];
 
@@ -35,8 +35,8 @@ export function Home() {
               <hr className="hero-rule home-hero-rule" />
               <div className="home-hero-copy">
                 <p className="home-hero-text">
-                  Zwei Lernende. Eine Leidenschaft. NT Digital entwickelt moderne Webauftritte für KMUs - sauber gebaut,
-                  mobilfreundlich, auf den Punkt.
+                  Zwei Lernende. Eine Leidenschaft. NT Digital entwickelt moderne Webauftritte für lokale Unternehmen
+                  in der Schweiz - sauber gebaut, mobilfreundlich und auf Anfragen ausgerichtet.
                 </p>
                 <div className="hero-actions">
                   <a href="/projekte" className="btn btn-primary">
@@ -67,7 +67,7 @@ export function Home() {
               <br />
               das sich sehen lässt.
             </h2>
-            <p>Kein Page-Builder. Kein Template. Echte Handarbeit - von Grund auf.</p>
+            <p>Webdesign Schweiz, das nicht nach Baukasten aussieht: klare Struktur, schnelle Ladezeiten und Inhalte, die Kunden verstehen.</p>
           </div>
 
           <div className="service-list">

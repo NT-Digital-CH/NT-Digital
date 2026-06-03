@@ -22,14 +22,14 @@ const projectTypes: ProjectType[] = [
     name: 'Onepager',
     priceLabel: 'ab CHF 290',
     basePrice: 290,
-    description: 'Eine kompakte Website für dein Angebot, Portfolio oder kleines Business.',
+    description: 'Eine kompakte Website für dein Angebot, Portfolio oder lokales Business.',
   },
   {
     id: 'landingpage',
     name: 'Landingpage',
     priceLabel: 'ab CHF 350',
     basePrice: 350,
-    description: 'Für eine Kampagne, ein Produkt oder eine einzelne Dienstleistung.',
+    description: 'Wenn du eine Landingpage erstellen lassen möchtest - für Kampagnen, Produkte oder Dienstleistungen.',
   },
   {
     id: 'website',
@@ -106,7 +106,8 @@ export function Prices() {
             <p className="hero-eyebrow">Preise</p>
             <ScrambleTitle prefix="Projektpreis" words={['grob einschätzen.']} className="hero-title" />
             <p className="lead">
-              Wähle einen Website-Typ und die Bausteine, die du brauchst. Die Schätzung aktualisiert sich direkt.
+              Wähle einen Website-Typ und die Bausteine, die du brauchst. Die Schätzung hilft dir, dein Website-Projekt
+              realistisch einzuordnen.
             </p>
           </div>
 
