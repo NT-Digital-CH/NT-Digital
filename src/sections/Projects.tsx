@@ -162,6 +162,82 @@ export function Projects() {
               </div>
             </article>
 
+            <article className="project-item reveal">
+              <p className="project-item-eyebrow">04 / Personal Portfolio · 2026</p>
+
+              <div className="project-item-thumb project-item-thumb-premium" aria-hidden="true">
+                <div className="project-thumb-ilija">
+                  <img src="/ilija_ref.png" alt="" className="project-thumb-ilija-img" loading="lazy" />
+                </div>
+              </div>
+
+              <div>
+                <p className="project-item-title">Ilija Nikolic</p>
+                <p className="project-item-desc">
+                  Persönliche Portfolio-Website für Ilija Nikolic. Klare Struktur, modernes Design und eine übersichtliche
+                  Darstellung von Skills und Projekten — alles darauf ausgelegt, einen starken ersten Eindruck zu hinterlassen.
+                </p>
+
+                <ul className="project-highlights" aria-label="Projekt-Highlights">
+                  <li>Übersichtliche Skills- und Projektdarstellung</li>
+                  <li>Modernes, cleanes Design</li>
+                  <li>Kontaktbereich mit direkter Erreichbarkeit</li>
+                  <li>Mobile-optimierter Aufbau</li>
+                </ul>
+
+                <div className="project-item-footer">
+                  <span className="project-badge green">Live</span>
+                  <div className="project-stack">
+                    <span className="stack-tag">Portfolio Website</span>
+                    <span className="stack-tag">Personal Brand</span>
+                    <span className="stack-tag">Responsive</span>
+                    <span className="stack-tag">Vercel</span>
+                  </div>
+                  <a href="https://portfolio-ilija.vercel.app/" className="project-link" target="_blank" rel="noopener">
+                    Live ansehen ↗
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <article className="project-item reveal">
+              <p className="project-item-eyebrow">05 / Fun Project · 2026</p>
+
+              <div className="project-item-thumb project-item-thumb-premium" aria-hidden="true">
+                <div className="project-thumb-bmw">
+                  <img src="/bmw_ref.png" alt="" className="project-thumb-bmw-img" loading="lazy" />
+                </div>
+              </div>
+
+              <div>
+                <p className="project-item-title">BMW Test Website</p>
+                <p className="project-item-desc">
+                  Ein persönliches Spassproject — eine BMW-inspirierte Test-Website. Designed als Spielwiese für neue
+                  Techniken und Layouts rund um das Thema Automobil und Premium-Branding.
+                </p>
+
+                <ul className="project-highlights" aria-label="Projekt-Highlights">
+                  <li>Automobil-inspiriertes Premium-Design</li>
+                  <li>Experimentelles Layout als persönliches Projekt</li>
+                  <li>Klare visuelle Hierarchie</li>
+                  <li>Responsive Umsetzung</li>
+                </ul>
+
+                <div className="project-item-footer">
+                  <span className="project-badge violet">Fun Project</span>
+                  <div className="project-stack">
+                    <span className="stack-tag">Test Website</span>
+                    <span className="stack-tag">Automotive</span>
+                    <span className="stack-tag">Premium UI</span>
+                    <span className="stack-tag">Vercel</span>
+                  </div>
+                  <a href="https://bmw-test-website.vercel.app/" className="project-link" target="_blank" rel="noopener">
+                    Live ansehen ↗
+                  </a>
+                </div>
+              </div>
+            </article>
+
             <div className="project-next reveal">
               <p className="project-next-label">Nächstes Projekt</p>
               <p className="project-next-text">
