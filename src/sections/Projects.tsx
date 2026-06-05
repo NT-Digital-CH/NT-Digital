@@ -1,4 +1,126 @@
+import { useState } from 'react';
 import { ScrambleTitle } from '../components/ScrambleTitle';
+
+type ProjectCategory = 'kundenprojekte' | 'portfolio' | 'konzepte';
+type ProjectFilter = 'all' | ProjectCategory;
+
+type Project = {
+  title: string;
+  type: string;
+  category: ProjectCategory;
+  year: string;
+  image: string;
+  imageAlt: string;
+  url?: string;
+  description: string;
+  tags: string[];
+  highlights: string[];
+  badge: 'green' | 'rose' | 'violet';
+  featured?: boolean;
+};
+
+const filterLabels: Record<ProjectFilter, string> = {
+  all: 'Alle Projekte',
+  kundenprojekte: 'Kundenprojekte',
+  portfolio: 'Portfolio',
+  konzepte: 'Konzepte',
+};
+
+const projects: Project[] = [
+  {
+    title: 'Hua Foo',
+    type: 'Band Website',
+    category: 'kundenprojekte',
+    year: '2026',
+    image: '/huafoo_ref.png',
+    imageAlt: 'Hua Foo Website Preview',
+    url: 'https://huafoo.ch/',
+    description:
+      'Website für die Coverband Hua Foo mit Bandvorstellung, Gigs, Musikbereich und direkter Buchungsanfrage.',
+    tags: ['Band Website', 'Booking', 'Event / Musik', 'Responsive'],
+    highlights: ['Gigs und Musik klar sichtbar', 'Buchungsweg direkt erreichbar'],
+    badge: 'violet',
+    featured: true,
+  },
+  {
+    title: 'Alexia Hairstylist',
+    type: 'Hairstylist Portfolio',
+    category: 'kundenprojekte',
+    year: '2026',
+    image: '/alexia_ref.png',
+    imageAlt: 'Alexia Hairstylist Website Preview',
+    url: 'https://alexia-hairstylist.vercel.app/',
+    description:
+      'Moderne Portfolio-Website mit Galerie, Behandlungsübersicht und klarer Instagram-DM-Anfrage.',
+    tags: ['Portfolio', 'Hairstyling', 'Galerie', 'Instagram Anfrage'],
+    highlights: ['Hair-Resultate hochwertig präsentiert', 'Mobile Anfrage über Instagram DM'],
+    badge: 'rose',
+    featured: true,
+  },
+  {
+    title: 'ACFinds',
+    type: 'Product Discovery Platform',
+    category: 'kundenprojekte',
+    year: '2026',
+    image: '/acfinds_ref.png',
+    imageAlt: 'ACFinds Website Preview',
+    url: 'https://www.acfinds.store/',
+    description:
+      'Curated Product-Discovery-Plattform für Fashion, Tech, Outfits, Brands und Seller.',
+    tags: ['Product Discovery', 'Fashion & Tech', 'Curated Finds', 'E-Commerce UI'],
+    highlights: ['Produkte und Kategorien schnell scanbar', 'Direkte Weiterleitung zu Shops'],
+    badge: 'rose',
+  },
+  {
+    title: 'Jones Thala',
+    type: 'Personal Portfolio',
+    category: 'portfolio',
+    year: '2026',
+    image: '/jonesthala_ref.png',
+    imageAlt: 'Jones Thala Website Preview',
+    url: 'https://www.jonesthala.ch',
+    description:
+      'Persönliches Portfolio mit Terminal-inspiriertem Look, Skills, Projekten und Kontaktbereich.',
+    tags: ['Portfolio Website', 'Terminal UI', 'Personal Brand', 'Responsive'],
+    highlights: ['Markanter Terminal-Look', 'Skills und Projekte übersichtlich'],
+    badge: 'green',
+  },
+  {
+    title: 'Ilija Nikolic',
+    type: 'Personal Portfolio',
+    category: 'portfolio',
+    year: '2026',
+    image: '/ilija_ref.png',
+    imageAlt: 'Ilija Nikolic Website Preview',
+    url: 'https://portfolio-ilija.vercel.app/',
+    description:
+      'Cleanes persönliches Portfolio mit moderner Struktur, Skills, Projekten und klarer Kontaktführung.',
+    tags: ['Portfolio Website', 'Personal Brand', 'Responsive', 'Vercel'],
+    highlights: ['Ruhige visuelle Hierarchie', 'Kontaktbereich klar erreichbar'],
+    badge: 'green',
+  },
+  {
+    title: 'BMW Test Website',
+    type: 'Fun Project',
+    category: 'konzepte',
+    year: '2026',
+    image: '/bmw_ref.png',
+    imageAlt: 'BMW Test Website Preview',
+    url: 'https://bmw-test-website.vercel.app/',
+    description:
+      'Automotive-inspiriertes Konzept als Spielwiese für Premium-Layouts, visuelle Hierarchie und Web-Techniken.',
+    tags: ['Test Website', 'Automotive', 'Premium UI', 'Vercel'],
+    highlights: ['Premium-Branding als Experiment', 'Responsive Konzeptumsetzung'],
+    badge: 'violet',
+  },
+];
+
+const filterItems: { label: string; value: ProjectFilter }[] = [
+  { label: 'Alle', value: 'all' },
+  { label: 'Kundenprojekte', value: 'kundenprojekte' },
+  { label: 'Portfolio', value: 'portfolio' },
+  { label: 'Konzepte', value: 'konzepte' },
+];
 
 const processItems = [
   {
@@ -18,7 +140,75 @@ const processItems = [
   },
 ];
 
+function ProjectCard({ project, featured = false }: { project: Project; featured?: boolean }) {
+  const visibleTags = project.tags.slice(0, featured ? 3 : 2);
+
+  return (
+    <article className={`project-card ${featured ? 'project-card-featured' : 'project-card-compact'} reveal visible`}>
+      {project.url ? (
+        <a
+          href={project.url}
+          className="project-card-thumb"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${project.title} live ansehen`}
+        >
+          <img src={project.image} alt={project.imageAlt} loading="lazy" />
+        </a>
+      ) : (
+        <div className="project-card-thumb" aria-hidden="true">
+          <img src={project.image} alt="" loading="lazy" />
+        </div>
+      )}
+
+      <div className="project-card-body">
+        <div className="project-card-meta">
+          <span>{project.type}</span>
+          <span>{project.year}</span>
+        </div>
+
+        <div>
+          <h3 className="project-card-title">{project.title}</h3>
+          <p className="project-card-desc">{project.description}</p>
+        </div>
+
+        {featured && (
+          <ul className="project-card-highlights" aria-label={`${project.title} Highlights`}>
+            {project.highlights.slice(0, 2).map((highlight) => (
+              <li key={highlight}>{highlight}</li>
+            ))}
+          </ul>
+        )}
+
+        <div className="project-card-footer">
+          <span className={`project-badge ${project.badge}`}>{project.url ? 'Live' : 'Konzept'}</span>
+          <div className="project-stack" aria-label={`${project.title} Tags`}>
+            {visibleTags.map((tag) => (
+              <span className="stack-tag" key={tag}>
+                {tag}
+              </span>
+            ))}
+          </div>
+          {project.url && (
+            <a href={project.url} className="project-link" target="_blank" rel="noopener noreferrer">
+              Live ansehen ↗
+            </a>
+          )}
+        </div>
+      </div>
+    </article>
+  );
+}
+
 export function Projects() {
+  const [activeFilter, setActiveFilter] = useState<ProjectFilter>('all');
+  const featuredProjects = projects.filter((project) => project.featured);
+  const visibleProjects =
+    activeFilter === 'all'
+      ? projects.filter((project) => !project.featured)
+      : projects.filter((project) => project.category === activeFilter);
+  const showFeatured = activeFilter === 'all';
+
   return (
     <main>
       <section className="hero hero-inner">
@@ -33,7 +223,7 @@ export function Projects() {
             <p className="lead reveal reveal-delay-2">
               Jede Website ist ein Handwerk - von der ersten Struktur bis zum Launch.
               <br />
-              Hier siehst du, wie wir digitale Lösungen für echte Anfragen und klare Nutzerwege bauen.
+              Hier siehst du digitale Lösungen, sortiert nach echten Cases, Portfolios und Konzepten.
             </p>
           </div>
         </div>
@@ -41,212 +231,66 @@ export function Projects() {
 
       <section className="flush-top">
         <div className="container">
-          <div className="projects-list">
-            <article className="project-item project-item-featured reveal">
-              <p className="project-item-eyebrow">01 / Band Website · 2026</p>
-
-              <div className="project-item-thumb" aria-hidden="true">
-                <div className="project-thumb-huafoo">
-                  <img src="/huafoo_ref.png" alt="" className="project-thumb-huafoo-img" loading="lazy" />
-                </div>
-              </div>
-
-              <div>
-                <p className="project-item-title">Hua Foo</p>
-                <p className="project-item-desc">
-                  Moderne Website für die Coverband Hua Foo mit Bandvorstellung, Gigs, Musikbereich und direkter
-                  Buchungsanfrage. Energiegeladen, klar strukturiert und optimiert für Besucher, Veranstalter und Fans.
-                </p>
-
-                <ul className="project-highlights" aria-label="Projekt-Highlights">
-                  <li>Band & Musik sauber präsentiert</li>
-                  <li>Kommende Gigs sichtbar</li>
-                  <li>Kontakt und Buchung klar erreichbar</li>
-                  <li>Responsive Aufbau für Mobile und Desktop</li>
-                </ul>
-
-                <div className="project-item-footer">
-                  <span className="project-badge violet">Live</span>
-                  <div className="project-stack">
-                    <span className="stack-tag">Band Website</span>
-                    <span className="stack-tag">Booking</span>
-                    <span className="stack-tag">Event / Musik</span>
-                    <span className="stack-tag">Responsive</span>
+          <div className="projects-showcase">
+            {showFeatured && (
+              <div className="projects-featured-block">
+                <div className="projects-section-head reveal">
+                  <p className="section-eyebrow">Featured Projects</p>
+                  <div>
+                    <h2>Ausgewählte Cases.</h2>
+                    <p>Projekte mit starkem visuellen Auftritt, klarer Struktur und direktem Nutzen für Besucher.</p>
                   </div>
-                  <a href="https://huafoo.ch/" className="project-link" target="_blank" rel="noopener">
-                    Live ansehen ↗
-                  </a>
+                </div>
+
+                <div className="featured-project-grid">
+                  {featuredProjects.map((project) => (
+                    <ProjectCard project={project} featured key={project.title} />
+                  ))}
                 </div>
               </div>
-            </article>
+            )}
 
-            <article className="project-item reveal">
-              <p className="project-item-eyebrow">02 / Personal Portfolio · 2026</p>
-
-              <div className="project-item-thumb project-item-thumb-premium" aria-hidden="true">
-                <div className="project-thumb-jonesthala">
-                  <img src="/jonesthala_ref.png" alt="" className="project-thumb-jonesthala-img" loading="lazy" />
+            <div className="project-overview" id="alle-projekte">
+              <div className="project-overview-head reveal">
+                <div>
+                  <p className="section-eyebrow">Projektfilter</p>
+                  <h2>{activeFilter === 'all' ? 'Weitere Projekte.' : filterLabels[activeFilter]}</h2>
                 </div>
+                <nav className="project-tabs" aria-label="Projekt-Kategorien">
+                  {filterItems.map((item) => (
+                    <button
+                      type="button"
+                      className={`project-tab ${activeFilter === item.value ? 'active' : ''}`}
+                      aria-pressed={activeFilter === item.value}
+                      onClick={() => setActiveFilter(item.value)}
+                      key={item.value}
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                </nav>
               </div>
 
-              <div>
-                <p className="project-item-title">Jones Thala</p>
-                <p className="project-item-desc">
-                  Persönliche Portfolio-Website für Jones Thala, ICT-Lernender im 2. Lehrjahr. Die Website kombiniert
-                  einen Terminal-inspirierten Look mit klarer Struktur, Skills, Projekten, Kontaktbereich und
-                  interaktiven Details wie Command Palette und Easter Egg.
-                </p>
-
-                <ul className="project-highlights" aria-label="Projekt-Highlights">
-                  <li>Terminal-inspirierter Hero-Bereich</li>
-                  <li>Skills & Projekte übersichtlich dargestellt</li>
-                  <li>Kontaktbereich mit Social Links</li>
-                  <li>Interaktive Features wie Command Palette und Secret Code</li>
-                  <li>Mobile-optimierter Aufbau</li>
-                </ul>
-
-                <div className="project-item-footer">
-                  <span className="project-badge green">Live</span>
-                  <div className="project-stack">
-                    <span className="stack-tag">Portfolio Website</span>
-                    <span className="stack-tag">Terminal UI</span>
-                    <span className="stack-tag">Personal Brand</span>
-                    <span className="stack-tag">Responsive</span>
-                    <span className="stack-tag">Vercel</span>
-                  </div>
-                  <a href="https://www.jonesthala.ch" className="project-link" target="_blank" rel="noopener">
-                    Live ansehen ↗
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            <article className="project-item reveal">
-              <p className="project-item-eyebrow">03 / Product Discovery Platform · 2026</p>
-
-              <div className="project-item-thumb project-item-thumb-premium project-item-thumb-marketplace" aria-hidden="true">
-                <div className="project-thumb-acfinds">
-                  <img src="/acfinds_ref.png" alt="" className="project-thumb-acfinds-img" loading="lazy" />
-                </div>
+              <div className="project-filter-summary reveal visible" aria-live="polite">
+                <span>{visibleProjects.length} Projekte</span>
+                
               </div>
 
-              <div>
-                <p className="project-item-title">ACFinds</p>
-                <p className="project-item-desc">
-                  Curated Product-Discovery-Plattform für Fashion, Tech und Outfits. ACFinds bündelt Produkte, Brands,
-                  Seller und Outfit-Ideen in einer cleanen Oberfläche, damit Besucher schneller gute Finds entdecken und
-                  direkt zu passenden Quellen weitergeleitet werden.
-                </p>
-
-                <ul className="project-highlights" aria-label="Projekt-Highlights">
-                  <li>Übersichtliche Produkt- und Kategorie-Struktur</li>
-                  <li>Bereiche für Products, Brands, Favorites, Outfits und Sellers</li>
-                  <li>Direkte Weiterleitung zu Shops/Sellern</li>
-                  <li>Cleaner Aufbau mit Fokus auf schnelles Entdecken</li>
-                  <li>Mobile-optimierte Produktdarstellung</li>
-                </ul>
-
-                <div className="project-item-footer">
-                  <span className="project-badge rose">Live</span>
-                  <div className="project-stack">
-                    <span className="stack-tag">Product Discovery</span>
-                    <span className="stack-tag">Fashion & Tech</span>
-                    <span className="stack-tag">Curated Finds</span>
-                    <span className="stack-tag">Responsive</span>
-                    <span className="stack-tag">E-Commerce UI</span>
-                  </div>
-                  <a href="https://www.acfinds.store/" className="project-link" target="_blank" rel="noopener">
-                    Live ansehen ↗
-                  </a>
-                </div>
+              <div className="project-category-grid project-filter-grid" key={activeFilter}>
+                {visibleProjects.map((project) => (
+                  <ProjectCard project={project} key={`${activeFilter}-${project.title}`} />
+                ))}
               </div>
-            </article>
-
-            <article className="project-item reveal">
-              <p className="project-item-eyebrow">04 / Personal Portfolio · 2026</p>
-
-              <div className="project-item-thumb project-item-thumb-premium" aria-hidden="true">
-                <div className="project-thumb-ilija">
-                  <img src="/ilija_ref.png" alt="" className="project-thumb-ilija-img" loading="lazy" />
-                </div>
-              </div>
-
-              <div>
-                <p className="project-item-title">Ilija Nikolic</p>
-                <p className="project-item-desc">
-                  Persönliche Portfolio-Website für Ilija Nikolic. Klare Struktur, modernes Design und eine übersichtliche
-                  Darstellung von Skills und Projekten — alles darauf ausgelegt, einen starken ersten Eindruck zu hinterlassen.
-                </p>
-
-                <ul className="project-highlights" aria-label="Projekt-Highlights">
-                  <li>Übersichtliche Skills- und Projektdarstellung</li>
-                  <li>Modernes, cleanes Design</li>
-                  <li>Kontaktbereich mit direkter Erreichbarkeit</li>
-                  <li>Mobile-optimierter Aufbau</li>
-                </ul>
-
-                <div className="project-item-footer">
-                  <span className="project-badge green">Live</span>
-                  <div className="project-stack">
-                    <span className="stack-tag">Portfolio Website</span>
-                    <span className="stack-tag">Personal Brand</span>
-                    <span className="stack-tag">Responsive</span>
-                    <span className="stack-tag">Vercel</span>
-                  </div>
-                  <a href="https://portfolio-ilija.vercel.app/" className="project-link" target="_blank" rel="noopener">
-                    Live ansehen ↗
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            <article className="project-item reveal">
-              <p className="project-item-eyebrow">05 / Fun Project · 2026</p>
-
-              <div className="project-item-thumb project-item-thumb-premium" aria-hidden="true">
-                <div className="project-thumb-bmw">
-                  <img src="/bmw_ref.png" alt="" className="project-thumb-bmw-img" loading="lazy" />
-                </div>
-              </div>
-
-              <div>
-                <p className="project-item-title">BMW Test Website</p>
-                <p className="project-item-desc">
-                  Ein persönliches Spassproject — eine BMW-inspirierte Test-Website. Designed als Spielwiese für neue
-                  Techniken und Layouts rund um das Thema Automobil und Premium-Branding.
-                </p>
-
-                <ul className="project-highlights" aria-label="Projekt-Highlights">
-                  <li>Automobil-inspiriertes Premium-Design</li>
-                  <li>Experimentelles Layout als persönliches Projekt</li>
-                  <li>Klare visuelle Hierarchie</li>
-                  <li>Responsive Umsetzung</li>
-                </ul>
-
-                <div className="project-item-footer">
-                  <span className="project-badge violet">Fun Project</span>
-                  <div className="project-stack">
-                    <span className="stack-tag">Test Website</span>
-                    <span className="stack-tag">Automotive</span>
-                    <span className="stack-tag">Premium UI</span>
-                    <span className="stack-tag">Vercel</span>
-                  </div>
-                  <a href="https://bmw-test-website.vercel.app/" className="project-link" target="_blank" rel="noopener">
-                    Live ansehen ↗
-                  </a>
-                </div>
-              </div>
-            </article>
+            </div>
 
             <div className="project-next reveal">
               <p className="project-next-label">Nächstes Projekt</p>
+              <p className="project-next-title">Dein Projekt als nächstes?</p>
               <p className="project-next-text">
-                Du könntest hier stehen.
-                <br />
-                Wir freuen uns auf neue Anfragen.
+                Wir erstellen moderne Websites für lokale Unternehmen, Selbstständige und kreative Projekte.
               </p>
-              <a href="/kontakt" className="btn btn-ghost">
-                Projekt anfragen →
+              <a href="/kontakt" className="btn btn-primary">
+                Projekt anfragen
               </a>
             </div>
           </div>
@@ -274,17 +318,6 @@ export function Projects() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="tight">
-        <div className="container">
-          <div className="cta-strip reveal">
-            <h2>Ein Projekt im Kopf?</h2>
-            <a href="/kontakt" className="btn btn-primary">
-              Jetzt anfragen →
-            </a>
           </div>
         </div>
       </section>
