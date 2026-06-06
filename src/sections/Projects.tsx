@@ -39,7 +39,7 @@ const projects: Project[] = [
       'Website für die Coverband Hua Foo mit Bandvorstellung, Gigs, Musikbereich und direkter Buchungsanfrage.',
     tags: ['Band Website', 'Booking', 'Event / Musik', 'Responsive'],
     highlights: ['Gigs und Musik klar sichtbar', 'Buchungsweg direkt erreichbar'],
-    badge: 'violet',
+    badge: 'green',
     featured: true,
   },
   {
@@ -54,7 +54,7 @@ const projects: Project[] = [
       'Moderne Portfolio-Website mit Galerie, Behandlungsübersicht und klarer Instagram-DM-Anfrage.',
     tags: ['Portfolio', 'Hairstyling', 'Galerie', 'Instagram Anfrage'],
     highlights: ['Hair-Resultate hochwertig präsentiert', 'Mobile Anfrage über Instagram DM'],
-    badge: 'rose',
+    badge: 'green',
     featured: true,
   },
   {
@@ -69,7 +69,7 @@ const projects: Project[] = [
       'Curated Product-Discovery-Plattform für Fashion, Tech, Outfits, Brands und Seller.',
     tags: ['Product Discovery', 'Fashion & Tech', 'Curated Finds', 'E-Commerce UI'],
     highlights: ['Produkte und Kategorien schnell scanbar', 'Direkte Weiterleitung zu Shops'],
-    badge: 'rose',
+    badge: 'green',
   },
   {
     title: 'Jones Thala',
@@ -111,7 +111,21 @@ const projects: Project[] = [
       'Automotive-inspiriertes Konzept als Spielwiese für Premium-Layouts, visuelle Hierarchie und Web-Techniken.',
     tags: ['Test Website', 'Automotive', 'Premium UI', 'Vercel'],
     highlights: ['Premium-Branding als Experiment', 'Responsive Konzeptumsetzung'],
-    badge: 'violet',
+    badge: 'green',
+  },
+  {
+    title: 'Drift',
+    type: 'Fun Project',
+    category: 'konzepte',
+    year: '2026',
+    image: '/drift_ref.png',
+    imageAlt: 'Drift Website Preview',
+    url: 'https://drift-ten-chi.vercel.app',
+    description:
+      'Dynamisches Web-Konzept mit starkem visuellem Auftritt, flüssigen Übergängen und modernem Layout.',
+    tags: ['Konzept', 'Motion', 'Premium UI', 'Vercel'],
+    highlights: ['Flüssige Animationen und Übergänge', 'Starkes visuelles Branding'],
+    badge: 'green',
   },
 ];
 
